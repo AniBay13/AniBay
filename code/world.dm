@@ -44,6 +44,8 @@
 	master_controller = new /datum/controller/game_controller()
 	spawn(1)
 		master_controller.setup()
+		
+	load_donators()
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
