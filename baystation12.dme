@@ -1361,6 +1361,7 @@
 #include "code\WorkInProgress\buildmode.dm"
 #include "code\WorkInProgress\explosion_particles.dm"
 #include "code\WorkInProgress\periodic_news.dm"
+#include "code\WorkInProgress\animusstation\reimu_hakkureis_donations.dm"
 #include "code\WorkInProgress\animusstation\turntable.dm"
 #include "code\WorkInProgress\animusstation\turntable_tracks.dm"
 #include "code\WorkInProgress\Apples\artifacts.dm"
