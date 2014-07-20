@@ -1,11 +1,8 @@
 // BEGIN_INTERNALS
 /*
-MAP_ICON_TYPE: 0
-WINDOW: code\game\machinery\computer\medical.dm
-LAST_COMPILE_VERSION: 506.1247
-DIR: code code\game code\game\machinery code\game\machinery\computer code\modules code\modules\mob maps 
-FILE: code\game\machinery\computer\medical.dm
-LAST_COMPILE_TIME: 1405716671
+LAST_COMPILE_TIME: 1405805234
 AUTO_FILE_DIR: OFF
+MAP_ICON_TYPE: 0
+LAST_COMPILE_VERSION: 506.1247
 */
 // END_INTERNALS
