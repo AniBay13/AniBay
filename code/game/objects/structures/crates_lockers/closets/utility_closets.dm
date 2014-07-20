@@ -176,6 +176,7 @@
 	new /obj/item/clothing/under/color/black( src )
 	new /obj/item/clothing/shoes/black( src )
 	new /obj/item/clothing/head/bomb_hood( src )
+	new /obj/item/clothing/gloves/black(src)
 
 
 /obj/structure/closet/bombclosetsecurity
@@ -192,6 +193,8 @@
 	new /obj/item/clothing/under/rank/security( src )
 	new /obj/item/clothing/shoes/brown( src )
 	new /obj/item/clothing/head/bomb_hood/security( src )
+	new /obj/item/clothing/gloves/black(src)
+	new /obj/item/weapon/grenade/empgrenade( src )
 
 /*
  * Hydrant

@@ -110,17 +110,38 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
 	var/btype = 0 // 0=radio, 1=prox, 2=time
+	var/oxy = 12
+	var/pla = 8
+	var/car = 20
 
 	timer
 		btype = 2
 
+		small
+		oxy = 10
+		pla = 6
+		car = 4
+
 		syndicate
+		oxy = 15
+		pla = 8
+		car = 6
 
 	proximity
 		btype = 1
 
+		small
+		oxy = 10
+		pla = 6
+		car = 4
+
 	radio
 		btype = 0
+
+		small
+		oxy = 10
+		pla = 6
+		car = 4
 
 
 /obj/effect/spawner/newbomb/New()
@@ -137,12 +158,12 @@
 	OT.master = V
 
 	PT.air_contents.temperature = plasma_FLASHPOINT
-	PT.air_contents.plasma = 12
-	PT.air_contents.carbon_dioxide = 8
+	PT.air_contents.plasma = pla
+	PT.air_contents.carbon_dioxide = car
 	PT.air_contents.update_values()
 
 	OT.air_contents.temperature = plasma_FLASHPOINT
-	OT.air_contents.oxygen = 20
+	OT.air_contents.oxygen = oxy
 	OT.air_contents.update_values()
 
 	var/obj/item/device/assembly/S
