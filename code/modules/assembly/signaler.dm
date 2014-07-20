@@ -22,6 +22,9 @@
 			set_frequency(frequency)
 		return
 
+	emp_act(severity)
+		radio_connection = null //Can't recive, can't send until freq changed.
+		return
 
 	activate()
 		if(cooldown > 0)	return 0

@@ -19,6 +19,11 @@
 		toggle_scan()
 		sense()
 
+	emp_act(severity)
+		toggle_scan()
+		time = rand(10,30)
+		activate()
+		return
 
 	activate()
 		if(!..())	return 0//Cooldown check

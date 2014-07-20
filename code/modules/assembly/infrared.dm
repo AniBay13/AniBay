@@ -19,6 +19,11 @@
 		trigger_beam()
 
 
+	emp_act(severity)
+		if(prob(5))
+			activate()
+		return
+
 	activate()
 		if(!..())	return 0//Cooldown check
 		on = !on

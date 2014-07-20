@@ -15,6 +15,14 @@
 	proc
 		timer_end()
 
+	emp_act()
+		if(prob(50))
+			time = rand(11,60)
+		else
+			time = rand(2, 10)
+		if(prob(5))
+			activate()
+		return
 
 	activate()
 		if(!..())	return 0//Cooldown check
