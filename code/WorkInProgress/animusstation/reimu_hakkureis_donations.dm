@@ -1,21 +1,216 @@
-var/list/donators = list()
+var/const/stuff = {"
+Hats
+SWAT cap:/obj/item/clothing/head/secsoft/fluff/swatcap:450
+Collectable Pete hat:/obj/item/clothing/head/collectable/petehat:2000
+Collectable Metroid hat:/obj/item/clothing/head/collectable/metroid:1300
+Collectable Xeno hat:/obj/item/clothing/head/collectable/xenom:1100
+Collectable Top hat:/obj/item/clothing/head/collectable/tophat:600
+Kitty Ears:/obj/item/clothing/head/kitty:100
+Ushanka:/obj/item/clothing/head/ushanka:300
 
-/proc/load_donators()
-	if(donators.len)
-		return
+Personal Stuff
+Eye patch:/obj/item/clothing/glasses/eyepatch:200
+Cane:/obj/item/weapon/cane:200
+Golden Pen:/obj/item/weapon/pen/fluff/eugene_bissegger_1:300
+Zippo:/obj/item/weapon/lighter/zippo:200
+Engraved Zippo:/obj/item/weapon/lighter/zippo/fluff/naples_1:250
+Golden Zippo:/obj/item/weapon/lighter/zippo/fluff/michael_guess_1:500
+Cigarette packet:/obj/item/weapon/storage/fancy/cigarettes:20
+DromedaryCo packet:/obj/item/weapon/storage/fancy/cigarettes/dromedaryco:50
+Premium Havanian Cigar:/obj/item/clothing/mask/cigarette/cigar/havana:200
+Electronic Cigarette:/obj/item/clothing/mask/fluff/electriccig:100
+Beer bottle:/obj/item/weapon/reagent_containers/food/drinks/beer:80
+Captain flask:/obj/item/weapon/reagent_containers/food/drinks/flask:300
+pAI card:/obj/item/device/paicard:300
+Teapot:/obj/item/weapon/reagent_containers/glass/beaker/fluff/eleanor_stone:200
+Three Mile Island Ice Tea:/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/threemileisland:100
 
+Costume sets
+Plague Doctor Set:/obj/effect/landmark/costume/plaguedoctor:3750
+
+Shoes
+Clown Shoes:/obj/item/clothing/shoes/clown_shoes:200
+Rainbow Shoes:/obj/item/clothing/shoes/rainbow:200
+Cyborg Shoes:/obj/item/clothing/shoes/cyborg:200
+Laceups Shoes:/obj/item/clothing/shoes/laceup:200
+Leather Shoes:/obj/item/clothing/shoes/leather:200
+Red Shoes:/obj/item/clothing/shoes/red:100
+Green Shoes:/obj/item/clothing/shoes/green:100
+Blue Shoes:/obj/item/clothing/shoes/blue:100
+Yellow Shoes:/obj/item/clothing/shoes/yellow:100
+Purple Shoes:/obj/item/clothing/shoes/purple:100
+Wooden Sandals:/obj/item/clothing/shoes/sandal:80
+Fluffy Slippers:/obj/item/clothing/shoes/slippers:150
+
+Jumpsuits
+Vice Policeman:/obj/item/clothing/under/rank/vice:900
+Rainbow Suit:/obj/item/clothing/under/rainbow:200
+Lightblue Suit:/obj/item/clothing/under/lightblue:200
+Aqua Suit:/obj/item/clothing/under/aqua:900
+Purple Suit:/obj/item/clothing/under/purple:200
+Lightpurple Suit:/obj/item/clothing/under/lightpurple:200
+Lightbrown Suit:/obj/item/clothing/under/lightbrown:200
+Brown Suit:/obj/item/clothing/under/brown:200
+Darkblue suit:/obj/item/clothing/under/darkblue:200
+Lightred Suit:/obj/item/clothing/under/lightred:200
+Darkred Suit:/obj/item/clothing/under/darkred:200
+Grim Jacket:/obj/item/clothing/under/suit_jacket:200
+Black Jacket:/obj/item/clothing/under/color/blackf:200
+Police Uniform:/obj/item/clothing/under/det/fluff/retpoluniform:400
+Scratched Suit:/obj/item/clothing/under/scratch:200
+Downy Jumpsuit:/obj/item/clothing/under/fluff/jumpsuitdown:200
+Tacticool Turtleneck:/obj/item/clothing/under/syndicate/tacticool:200
+
+Gloves
+White:/obj/item/clothing/gloves/white:200
+Rainbow:/obj/item/clothing/gloves/rainbow:300
+Black:/obj/item/clothing/gloves/black:250
+
+Coats
+Brown Coat:/obj/item/clothing/suit/browncoat:500
+
+Bedsheets
+Clown Bedsheet:/obj/item/weapon/bedsheet/clown:300
+Mime Bedsheet:/obj/item/weapon/bedsheet/mime:300
+Rainbow Bedsheet:/obj/item/weapon/bedsheet/rainbow:300
+Captain Bedsheet:/obj/item/weapon/bedsheet/captain:600
+
+Toys
+Rubber Duck:/obj/item/weapon/bikehorn/rubberducky:500
+The Holy Cross:/obj/item/fluff/val_mcneil_1:600
+Champion Belt:/obj/item/weapon/storage/belt/champion:400
+Keppel:/obj/item/weapon/fluff/cado_keppel_1:400
+
+Special Stuff
+Santabag:/obj/item/weapon/storage/backpack/santabag:4000
+"}
+
+
+var/list/datum/donator_prize/prizes = list()
+var/list/datum/donator/donators = list()
+
+/datum/donator
+	var/ownerkey
+	var/money = 0
+	var/maxmoney = 0
+	var/allowed_num_items = 10
+
+	New(ckey, money)
+		..()
+		ownerkey = ckey
+		src.money = money
+		maxmoney = money
+		donators[ckey] = src
+
+	proc/show()
+		var/dat = "<title>Donator panel</title>"
+		dat += "You have [money] / [maxmoney]<br>"
+		dat += "You can spawn [ allowed_num_items ? allowed_num_items : "no" ] more items.<br><br>"
+
+		if (allowed_num_items)
+			if (!prizes.len)
+				build_prizes_list()
+
+			var/cur_cat = "None"
+
+			for (var/i = 1, i<=prizes.len, i++)
+				var/datum/donator_prize/prize = prizes[i]
+				var/cat_name = prize.category
+				if (cur_cat != cat_name)
+					dat += "<hr><b>[cat_name]</b><br>"
+				cur_cat = cat_name
+				dat += "<a href='?src=\ref[src];itemid=[i]'>[prize.item_name] : [prize.cost]</a><br>"
+		usr << browse(dat, "window=donatorpanel;size=250x400")
+
+	Topic(href, href_list)
+		var/id = text2num(href_list["itemid"])
+		var/datum/donator_prize/prize = prizes[id]
+
+		var/name = prize.item_name
+		var/cost = prize.cost
+		var/path = prize.path_to
+		var/mob/living/carbon/human/user = usr.client.mob
+
+		var/list/slots = list (
+			"backpack" = slot_in_backpack,
+			"left pocket" = slot_l_store,
+			"right pocket" = slot_r_store,
+			"left hand" = slot_l_hand,
+			"right hand" = slot_r_hand,
+		)
+
+		if(cost > money)
+			usr << "\red You don't have enough funds."
+			return 0
+
+		if(!allowed_num_items)
+			usr << "\red You have reached maximum amount of spawned items."
+			return 0
+
+		if(!user)
+			user << "\red You must be a human to use this."
+			return 0
+
+		if(!ispath(path))
+			return 0
+
+		if(user.stat) return 0
+
+		var/obj/spawned = new path
+
+		var/where = user.equip_in_one_of_slots(spawned, slots, del_on_fail=0)
+
+		if (!where)
+			spawned.loc = user.loc
+			usr << "\blue Your [name] has been spawned!"
+		else
+			usr << "\blue Your [name] has been spawned in your [where]!"
+
+		money -= cost
+		allowed_num_items--
+
+		show()
+
+/datum/donator_prize
+	var/item_name = "Nothing"
+	var/path_to = /datum/donator_prize
+	var/cost = 0
+	var/category = "Debug"
+
+proc/load_donator(ckey)
 	establish_db_connection()
-	if(!dbcon.IsConnected())
-		world.log << "Failed to connect to database in load_donators()."
-		diary << "Failed to connect to database in load_donators()."
-		donators["fail"] = 1
-		return
-	var/DBQuery/query = dbcon.NewQuery("SELECT byond,sum FROM forum2.Z_donators")
-	query.Execute()
-	while(query.NextRow())
-		donators[query.item[1]] = round(query.item[2])
 
-/client/var/datum/donators/donator = null
+	if(!dbcon.IsConnected())
+		world.log << "Failed to connect to database in load_donator([ckey])."
+		diary << "Failed to connect to database in load_donator([ckey])."
+		return 0
+
+	var/DBQuery/query = dbcon.NewQuery("SELECT sum FROM forum2.z_donators WHERE byond='[ckey]'")
+	query.Execute()
+
+	if (query.item.len)
+		var/money = round(query.item[1])
+		new /datum/donator(ckey, money)
+		return 1
+	else
+		return 0
+
+proc/build_prizes_list()
+	var/list/strings = text2list ( stuff, "\n" )
+	var/cur_cat = "Miscellaneous"
+	for (var/string in strings)
+		if (string) //It's not a delimiter between
+			var/list/item_info = text2list ( string, ":" )
+			if (item_info.len==3)
+				var/datum/donator_prize/prize = new
+				prize.item_name = item_info[1]
+				prize.path_to = text2path(item_info[2])
+				prize.cost = text2num(item_info[3])
+				prize.category = cur_cat
+				prizes += prize
+			else
+				cur_cat = item_info[1]
+
 
 /client/verb/cmd_donator_panel()
 	set name = "Donator panel"
@@ -25,223 +220,15 @@ var/list/donators = list()
 		alert("Please wait until game setting up!")
 		return
 
-	if(!donators.len)
-		load_donators()
-
-	if(!donator)
-		var/exists = 0
-		for(var/datum/donators/D)
-			if(D.ownerkey == ckey)
-				exists = 1
-				src.donator = D
-				break
-		if(!exists)
-			src.donator = new /datum/donators()
-			src.donator.owner = src
-			src.donator.ownerkey = ckey
-			if(donators[ckey])
-				donator.maxmoney = donators[ckey]
-				donator.money = src.donator.maxmoney
-
-	donator.donatorpanel()
-
-/var/list/donators_datums = list() //need for protect from garbage collector
-
-/datum/donators
-	var/client/owner = null
-	var/ownerkey
-	var/money = 0
-	var/maxmoney = 0
-	var/allowed_num_items = 10
-
-	New()
-		..()
-		donators_datums += src
-
-/datum/donators/proc/donatorpanel()
-	var/dat = "<title>Donator panel</title>"
-	dat += "Your money: [money]/[maxmoney]<br>"
-	dat += "Allowed number of items: [allowed_num_items]/10<br><br>"
-	dat += "<b>Select items:</b> <br>"
-
-	//here items list
-	dat += "<b>Hats:</b> <br>"
-//	dat += "Tough Guy's Toque: <A href='?src=\ref[src];item=/obj/item/clothing/head/fluff/enos_adlai_1;cost=600'>600</A><br>"
-	dat += "SWAT cap: <A href='?src=\ref[src];item=/obj/item/clothing/head/secsoft/fluff/swatcap;cost=450'>450</A><br>"
-//	dat += "Bloody Welding Helmet: <A href='?src=\ref[src];item=/obj/item/clothing/head/helmet/welding/fluff/yuki_matsuda_1;cost=600'>600</A><br>"
-//	dat += "Welding Helmet with Flowers: <A href='?src=\ref[src];item=/obj/item/clothing/head/helmet/welding/fluff/alice_maccrea_1;cost=600'>600</A><br>"
-//	dat += "Flagmask: <A href='?src=\ref[src];item=/obj/item/clothing/mask/fluff/flagmask;cost=600'>600</A><br>"
-	dat += "Collectable Pete hat: <A href='?src=\ref[src];item=/obj/item/clothing/head/collectable/petehat;cost=2000'>2000</A><br>"
-	dat += "Collectable Metroid hat: <A href='?src=\ref[src];item=/obj/item/clothing/head/collectable/metroid;cost=1300'>1300</A><br>"
-	dat += "Collectable Xeno hat: <A href='?src=\ref[src];item=/obj/item/clothing/head/collectable/xenom;cost=1100'>1100</A><br>"
-//	dat += "Collectable Slime hat: <A href='?src=\ref[src];item=/obj/item/clothing/head/collectable/slime;cost=1500'>1500</A><br>"
-	dat += "Collectable Top hat: <A href='?src=\ref[src];item=/obj/item/clothing/head/collectable/tophat;cost=600'>600</A><br>"
-	dat += "Kitty Ears: <A href='?src=\ref[src];item=/obj/item/clothing/head/kitty;cost=100'>100</A><br>"
-	dat += "Ushanka: <A href='?src=\ref[src];item=/obj/item/clothing/head/ushanka;cost=300'>300</A><br>"
-
-	dat += "<b>Personal Stuff:</b> <br>"
-	dat += "Eye patch: <A href='?src=\ref[src];item=/obj/item/clothing/glasses/eyepatch;cost=200'>200</A><br>"
-	dat += "Cane: <A href='?src=\ref[src];item=/obj/item/weapon/cane;cost=200'>200</A><br>"
-	dat += "Golden Pen: <A href='?src=\ref[src];item=/obj/item/weapon/pen/fluff/eugene_bissegger_1;cost=300'>300</A><br>"
-	dat += "Zippo: <A href='?src=\ref[src];item=/obj/item/weapon/lighter/zippo;cost=200'>200</A><br>"
-	dat += "Engraved Zippo: <A href='?src=\ref[src];item=/obj/item/weapon/lighter/zippo/fluff/naples_1;cost=250'>250</A><br>"
-	dat += "Golden Zippo: <A href='?src=\ref[src];item=/obj/item/weapon/lighter/zippo/fluff/michael_guess_1;cost=500'>500</A><br>"
-	dat += "Cigarette packet: <A href='?src=\ref[src];item=/obj/item/weapon/storage/fancy/cigarettes;cost=20'>20</A><br>"
-	dat += "DromedaryCo packet: <A href='?src=\ref[src];item=/obj/item/weapon/storage/fancy/cigarettes/dromedaryco;cost=50'>50</A><br>"
-	dat += "Premium Havanian Cigar: <A href='?src=\ref[src];item=/obj/item/clothing/mask/cigarette/cigar/havana;cost=200'>200</A><br>"
-	dat += "Electronic Cigarette: <A href='?src=\ref[src];item=/obj/item/clothing/mask/fluff/electriccig;cost=100'>100</A><br>"
-	dat += "Beer bottle: <A href='?src=\ref[src];item=/obj/item/weapon/reagent_containers/food/drinks/beer;cost=80'>80</A><br>"
-	dat += "Captain flask: <A href='?src=\ref[src];item=/obj/item/weapon/reagent_containers/food/drinks/flask;cost=300'>300</A><br>"
-	dat += "pAI card: <A href='?src=\ref[src];item=/obj/item/device/paicard;cost=300'>300</A><br>"
-	dat += "Teapot: <A href='?src=\ref[src];item=/obj/item/weapon/reagent_containers/glass/beaker/fluff/eleanor_stone;cost=200'>200</A><br>"
-	dat += "\"Three Mile Island\" Ice Tea: <A href='?src=\ref[src];item=/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/threemileisland;cost=100'>100</A><br>"
-
-	//dat += "<b>Clothing Sets:</b> <br>"
-	//dat += "Prig Costume: <A href='?src=\ref[src];item=/obj/effect/landmark/costume/prig;cost=750'>750</A><br>"
-	dat += "Plague Doctor Set: <A href='?src=\ref[src];item=/obj/effect/landmark/costume/plaguedoctor;cost=3750'>3750</A><br>"
-	//dat += "Waiter Set: <A href='?src=\ref[src];item=/obj/effect/landmark/costume/waiter;cost=750'>750</A><br>"
-	//dat += "Commie Set: <A href='?src=\ref[src];item=/obj/effect/landmark/costume/commie;cost=1100'>1100</A><br>"
-	//dat += "Girly-girl Set: <A href='?src=\ref[src];item=/obj/effect/landmark/costume/nyangirl;cost=750'>750</A><br>"
-	//dat += "Rosh Set: <A href='?src=\ref[src];item=/obj/effect/landmark/costume/rosh;cost=1200'>1200</A><br>"
-	//dat += "Butler Set: <A href='?src=\ref[src];item=/obj/effect/landmark/costume/butler;cost=750'>750</A><br>"
-	//dat += "Highlander Set: <A href='?src=\ref[src];item=/obj/effect/landmark/costume/highlander;cost=1100'>1100</A><br>"
-	//dat += "Scratch Set: <A href='?src=\ref[src];item=/obj/effect/landmark/costume/scratch;cost=750'>750</A><br>"
-
-	dat += "<b>Shoes:</b> <br>"
-	dat += "Clown Shoes: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/clown_shoes;cost=200'>200</A><br>"
-	dat += "Rainbow Shoes: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/rainbow;cost=200'>200</A><br>"
-	dat += "Cyborg Shoes: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/cyborg;cost=200'>200</A><br>"
-	dat += "Laceups Shoes: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/laceup;cost=200'>200</A><br>"
-	dat += "Leather Shoes: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/leather;cost=200'>200</A><br>"
-	dat += "Red Shoes: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/red;cost=100'>100</A><br>"
-	dat += "Green Shoes: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/green;cost=100'>100</A><br>"
-	dat += "Blue Shoes: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/blue;cost=100'>100</A><br>"
-	dat += "Yellow Shoes: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/yellow;cost=100'>100</A><br>"
-	dat += "Purple Shoes: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/purple;cost=100'>100</A><br>"
-//	dat += "Yellow Boots: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/yellowboots;cost=100'>100</A><br>"
-//	dat += "White Boots: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/whiteboots;cost=100'>100</A><br>"
-//	dat += "Brown Boots: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/fullbrown;cost=100'>100</A><br>"
-	dat += "Wooden Sandals: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/sandal;cost=80'>80</A><br>"
-	dat += "Fluffy Slippers: <A href='?src=\ref[src];item=/obj/item/clothing/shoes/slippers;cost=150'>150</A><br>"
-
-	dat += "<b>Jumpsuits:</b> <br>"
-	dat += "Vice Policeman: <A href='?src=\ref[src];item=/obj/item/clothing/under/rank/vice;cost=900'>900</A><br>"
-//	dat += "Johny~~ Suit: <A href='?src=\ref[src];item=/obj/item/clothing/suit/johnny_coat;cost=920'>920</A><br>"
-	dat += "Rainbow Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/rainbow;cost=200'>200</A><br>"
-//	dat += "Cloud Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/cloud;cost=900'>900</A><br>"
-	dat += "Lightblue Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/lightblue;cost=200'>200</A><br>"
-	dat += "Aqua Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/aqua;cost=900'>900</A><br>"
-	dat += "Purple Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/purple;cost=200'>200</A><br>"
-	dat += "Lightpurple Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/lightpurple;cost=200'>200</A><br>"
-	dat += "Lightbrown Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/lightbrown;cost=200'>200</A><br>"
-	dat += "Brown Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/brown;cost=200'>200</A><br>"
-	dat += "Darkblue suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/darkblue;cost=200'>200</A><br>"
-	dat += "Lightred Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/lightred;cost=200'>200</A><br>"
-	dat += "Darkred Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/darkred;cost=200'>200</A><br>"
-	dat += "Grim Jacket: <A href='?src=\ref[src];item=/obj/item/clothing/under/suit_jacket;cost=200'>200</A><br>"
-	dat += "Black Jacket: <A href='?src=\ref[src];item=/obj/item/clothing/under/color/blackf;cost=200'>200</A><br>"
-	dat += "Police Uniform: <A href='?src=\ref[src];item=/obj/item/clothing/under/det/fluff/retpoluniform;cost=400'>400</A><br>"
-	dat += "Scratched Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/scratch;cost=200'>200</A><br>"
-//	dat += "Purple Cheerleader Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/cheerleader/purple;cost=200'>200</A><br>"
-//	dat += "Yellow Cheerleader Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/cheerleader/yellow;cost=200'>200</A><br>"
-//	dat += "White Cheerleader Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/cheerleader/white;cost=200'>200</A><br>"
-//	dat += "Cheerleader Suit: <A href='?src=\ref[src];item=/obj/item/clothing/under/cheerleader;cost=200'>200</A><br>"
-	dat += "Downy Jumpsuit: <A href='?src=\ref[src];item=/obj/item/clothing/under/fluff/jumpsuitdown;cost=200'>200</A><br>"
-	dat += "Tacticool Turtleneck: <A href='?src=\ref[src];item=/obj/item/clothing/under/syndicate/tacticool;cost=200'>200</A><br>"
-
-	dat += "<b>Gloves:</b> <br>"
-	dat += "White: <A href='?src=\ref[src];item=/obj/item/clothing/gloves/white;cost=200'>200</A><br>"
-	dat += "Rainbow: <A href='?src=\ref[src];item=/obj/item/clothing/gloves/rainbow;cost=300'>300</A><br>"
-//	dat += "Fingerless: <A href='?src=\ref[src];item=/obj/item/clothing/gloves/fingerless;cost=200'>200</A><br>"
-	dat += "Black: <A href='?src=\ref[src];item=/obj/item/clothing/gloves/black;cost=250'>250</A><br>"
-
-	dat += "<b>Coats:</b> <br>"
-//	dat += "France Jacker: <A href='?src=\ref[src];item=/obj/item/clothing/suit/storage/labcoat/fr_jacket;cost=500'>500</A><br>"
-//	dat += "Pink Labcoat: <A href='?src=\ref[src];item=/obj/item/clothing/suit/storage/labcoat/fluff/pink;cost=500'>500</A><br>"
-//	dat += "Girly Labcoat: <A href='?src=\ref[src];item=/obj/item/clothing/suit/storage/labcoat/fluff/red;cost=500'>500</A><br>"
-	dat += "Brown Coat: <A href='?src=\ref[src];item=/obj/item/clothing/suit/browncoat;cost=500'>500</A><br>"
-//	dat += "Leather Coat: <A href='?src=\ref[src];item=/obj/item/clothing/suit/leathercoat;cost=600'>600</A><br>"
-//	dat += "Neo Coat: <A href='?src=\ref[src];item=/obj/item/clothing/suit/neocoat;cost=900'>900</A><br>"
-//	dat += "Wedding Dress: <A href='?src=\ref[src];item=/obj/item/clothing/suit/weddingdress;cost=500'>500</A><br>"
-	dat += "<b>Bedsheets:</b> <br>"
-	dat += "Clown Bedsheet: <A href='?src=\ref[src];item=/obj/item/weapon/bedsheet/clown;cost=300'>300</A><br>"
-	dat += "Mime Bedsheet: <A href='?src=\ref[src];item=/obj/item/weapon/bedsheet/mime;cost=300'>300</A><br>"
-	dat += "Rainbow Bedsheet: <A href='?src=\ref[src];item=/obj/item/weapon/bedsheet/rainbow;cost=300'>300</A><br>"
-	dat += "Captain Bedsheet: <A href='?src=\ref[src];item=/obj/item/weapon/bedsheet/captain;cost=600'>600</A><br>"
-
-	dat += "<b>Toys:</b> <br>"
-	dat += "Rubber Duck: <A href='?src=\ref[src];item=/obj/item/weapon/bikehorn/rubberducky;cost=500'>500</A><br>"
-	dat += "The Holy Cross: <A href='?src=\ref[src];item=/obj/item/fluff/val_mcneil_1;cost=600'>600</A><br>"
-	dat += "Champion Belt: <A href='?src=\ref[src];item=/obj/item/weapon/storage/belt/champion;cost=400'>400</A><br>"
-	dat += "Keppel: <A href='?src=\ref[src];item=/obj/item/weapon/fluff/cado_keppel_1;cost=400'>400</A><br>"
-
-	dat += "<b>Special Stuff:</b> <br>"
-	dat += "Santabag: <A href='?src=\ref[src];item=/obj/item/weapon/storage/backpack/santabag;cost=4000'>4000</A><br>"
-	dat += "Sunglasses: <A href='?src=\ref[src];item=/obj/item/clothing/glasses/sunglasses;cost=600'>600</A><br>"
-//	dat += "Soul stone shard: <A href='?src=\ref[src];item=/obj/item/device/soulstone;cost=1500'>1500</A><br>"
-//	dat += "Plastic balisong knife: <A href='?src=\ref[src];item=/obj/item/weapon/kitchenknife/b_knife;cost=800'>800</A><br>"
-
-	usr << browse(dat, "window=donatorpanel;size=250x400")
-
-
-/datum/donators/Topic(href, href_list)
-	if(href_list["item"])
-		attemptSpawnItem(href_list["item"],text2num(href_list["cost"]))
-		return
-
-
-/datum/donators/proc/attemptSpawnItem(var/item,var/cost)
-	var/path = text2path(item)
-
-	if(cost > money)
-		usr << "\red You don't have enough funds."
-		return 0
-
-	if(!allowed_num_items)
-		usr << "\red You already spawned max count of items."
-		return
-
-	var/mob/living/carbon/human/H = owner.mob
-	if(!istype(H))
-		usr << "\red You must be a human to use this."
-		return 0
-
-	if(!ispath(path))
-		//world << "attempted to spawn [item] - no such item exist"
-		return 0
-
-	if(H.stat) return 0
-
-/*	if(ownerkey == "editorrus")
-		usr << "\blue Your vial has been spawned in your anal slot!"
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial(H)
-		return 0
-
-	if(ownerkey == "mikles" || ispath(path, /obj/machinery/singularity))
-		usr << "\blue Your Nar-Sie has been spawned in your anal slot!"
-		H.gib()
-		return 0 -- Lol.*/
-
-	var/obj/spawned = new path(H)
-	var/list/slots = list (
-		"backpack" = slot_in_backpack,
-		"left pocket" = slot_l_store,
-		"right pocket" = slot_r_store,
-		"left hand" = slot_l_hand,
-		"right hand" = slot_r_hand,
-	)
-	var/where = H.equip_in_one_of_slots(spawned, slots, del_on_fail=0)
-	if (!where)
-		spawned.loc = H.loc
-		usr << "\blue Your [spawned.name] has been spawned!"
+	if (!donators[ckey]) //It doesn't exist yet
+		if (load_donator(ckey))
+			var/datum/donator/D = donators[ckey]
+			D.show()
+		else
+			usr << browse ("<b>You have not donated or the database is inaccessible.</b>", "window=donatorpanel")
 	else
-		usr << "\blue Your [spawned.name] has been spawned in your [where]!"
-
-
-	money -= cost
-	allowed_num_items--
-	owner.cmd_donator_panel()
-
+		var/datum/donator/D = donators[ckey]
+		D.show()
 
 //SPECIAL ITEMS
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/threemileisland
