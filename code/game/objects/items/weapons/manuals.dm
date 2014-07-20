@@ -743,18 +743,20 @@
 	author = "NanoTrasen"
 	title = "Corporate Regulations"
 
-	dat = {"
-
-		<html><head>
-		</head>
-
-		<body>
-		<iframe width='100%' height='97%' src="http://baystation12.net/wiki/index.php?title=Corporate_Regulations&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
-		</body>
-
-		</html>
-
-		"}
+	attack_self(mob/user as mob)
+		if(carved)
+			if(store)
+				user << "<span class='notice'>[store] falls out of [title]!</span>"
+				store.loc = get_turf(src.loc)
+				store = null
+				return
+			else
+				user << "<span class='notice'>The pages of [title] have been cut out!</span>"
+				return
+		else
+			user << browse('html/law.html', "window=changes;size=675x650")
+			user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
+			onclose(user, "book")
 
 
 

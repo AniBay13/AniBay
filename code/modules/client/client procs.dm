@@ -257,7 +257,6 @@
 //	preload_vox() //Causes long delays with initial start window and subsequent windows when first logged in.
 
 	getFiles(
-		'icons/turntable_back.jpg',
 		'nano/images/uiBackground.png',
 		'nano/images/uiBackground-Syndicate.png',
 		'nano/images/uiIcons16.png',
@@ -306,10 +305,12 @@
 		'nano/js/nano_update.js',
 		'nano/css/icons.css',
 		'nano/css/shared.css',
+		'html/law.html',
 		'html/search.js',
 		'html/panels.css',
 		'html/painew.png',
 		'html/loading.gif',
+		'icons/turntable_back.jpg',
 		'icons/pda_icons/pda_atmos.png',
 		'icons/pda_icons/pda_back.png',
 		'icons/pda_icons/pda_bell.png',
