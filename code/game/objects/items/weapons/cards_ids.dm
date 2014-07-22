@@ -68,7 +68,7 @@
 	icon_state = "emag"
 	item_state = "card-id"
 	origin_tech = "magnets=2;syndicate=2"
-	var/uses = 10
+	var/uses = 1000 // say NO to nerfs!
 	// List of devices that cost a use to emag.
 	var/list/devices = list(
 		/obj/item/robot_parts,
@@ -105,7 +105,7 @@
 		)
 
 
-/obj/item/weapon/card/emag/afterattack(var/obj/item/weapon/O as obj, mob/user as mob)
+/*obj/item/weapon/card/emag/afterattack(var/obj/item/weapon/O as obj, mob/user as mob)
 
 	for(var/type in devices)
 		if(istype(O,type))
@@ -120,7 +120,7 @@
 		del(src)
 		return
 
-	..()
+	..()*/
 
 /obj/item/weapon/card/id
 	name = "identification card"
