@@ -9,7 +9,7 @@
 	oretag = "uranium"
 
 /datum/ore/iron
-	smelts_to = /obj/item/stack/sheet/mineral/iron
+	smelts_to = /obj/item/stack/sheet/metal
 	alloy = 1
 	oretag = "hematite"
 

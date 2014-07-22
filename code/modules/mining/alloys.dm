@@ -18,10 +18,10 @@
 	product_mod = 0.3
 	product = /obj/item/stack/sheet/plasteel
 
-/datum/alloy/steel
+/*datum/alloy/steel
 	metaltag = "steel"
 	requires = list(
 		"coal" = 1,
 		"hematite" = 1
 		)
-	product = /obj/item/stack/sheet/metal
+	product = /obj/item/stack/sheet/metal*/
