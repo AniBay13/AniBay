@@ -8,7 +8,7 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue)
+	access = list(access_hydroponics, access_bar, access_kitchen, access_maint_tunnels)
 	minimal_access = list(access_bar)
 
 
@@ -170,7 +170,7 @@
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#dddddd"
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station)
-	minimal_access = list(access_mining, access_mint, access_mining_station, access_mailsorting)
+	minimal_access = list(access_mining, access_mint, access_mining_station, access_mailsorting, access_maint_tunnels)
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -208,7 +208,7 @@
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	access = list(access_clown, access_theatre, access_maint_tunnels)
-	minimal_access = list(access_clown, access_theatre)
+	minimal_access = list(access_clown, access_theatre, access_maint_tunnels)
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -240,7 +240,7 @@
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	access = list(access_mime, access_theatre, access_maint_tunnels)
-	minimal_access = list(access_mime, access_theatre)
+	minimal_access = list(access_mime, access_theatre, access_maint_tunnels)
 
 
 	equip(var/mob/living/carbon/human/H)

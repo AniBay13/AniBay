@@ -25,4 +25,4 @@
 	if(config.assistant_maint)
 		return list(access_maint_tunnels)
 	else
-		return list()
+		return list(access_maint_tunnels) // haha
