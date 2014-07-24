@@ -103,3 +103,49 @@
 					prob(2);/obj/random/toolbox,\
 					prob(2);/obj/item/weapon/storage/belt/utility,\
 					prob(5);/obj/random/tool)
+
+/obj/random/maintenance
+	name = "Random Maintenance Stuff"
+	desc = "This is a random item."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "latexballon_blow"
+	spawn_nothing_percentage = 20
+	item_to_spawn()
+		return pick(prob(7);/obj/random/tech_supply,\
+					prob(2);/obj/item/device/flashlight,\
+					prob(1);/obj/item/weapon/storage/box/lights/mixed,\
+					prob(1);/obj/item/clothing/glasses/sunglasses,\
+					prob(2);/obj/item/clothing/mask/gas,\
+					prob(1);/obj/item/weapon/lighter,\
+					prob(1);/obj/item/weapon/mop,\
+					prob(1);/obj/item/weapon/rack_parts,\
+					prob(1);/obj/item/weapon/shovel,\
+					prob(1);/obj/item/weapon/table_parts/wood,\
+					prob(1);/obj/item/weapon/table_parts,\
+					prob(1);/obj/item/weapon/tank/air,\
+					prob(1);/obj/item/weapon/tank/emergency_oxygen,\
+					prob(1);/obj/item/weapon/tank/emergency_oxygen/engi,\
+					prob(1);/obj/item/weapon/wrapping_paper,\
+					prob(1);/obj/item/weapon/dice,\
+					prob(1);/obj/item/weapon/dice/d20,\
+					prob(1);/obj/item/weapon/caution,\
+					prob(2);/obj/item/weapon/cigbutt,\
+					prob(1);/obj/item/weapon/camera_assembly,\
+					prob(1);/obj/item/weapon/cane,\
+					prob(3);/obj/item/weapon/extinguisher,\
+					prob(1);/obj/item/toy/ammo/crossbow,\
+					prob(1);/obj/item/taperoll/engineering,\
+					prob(2);/obj/item/stack/rods,\
+					prob(1);/obj/item/stack/medical/bruise_pack,\
+					prob(1);/obj/item/stack/medical/ointment,\
+					prob(1);/obj/item/stack/sheet/cardboard,\
+					prob(1);/obj/item/stack/sheet/cloth,\
+					prob(1);/obj/item/stack/sheet/wood,\
+					prob(1);/obj/item/stack/sheet/glass,\
+					prob(1);/obj/item/stack/tile/carpet,\
+					prob(1);/obj/item/stack/tile/grass,\
+					prob(1);/obj/item/stack/tile/wood,\
+					prob(1);/obj/item/stack/tile,\
+					prob(1);/obj/item/nutrient,\
+					prob(1);/obj/item/bodybag,\
+					prob(1);/obj/item/candle)
