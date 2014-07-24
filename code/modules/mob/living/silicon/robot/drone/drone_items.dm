@@ -1,10 +1,11 @@
 //Simple borg hand.
 //Limited use.
-/obj/item/weapon/gripper
+/obj/item/borg/gripper
 	name = "magnetic gripper"
 	desc = "A simple grasping tool for synthetic assets."
-	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
+
+	var/overpowered = 0
 
 	//Has a list of items that it can hold.
 	var/list/can_hold = list(
@@ -28,12 +29,11 @@
 	//Item currently being held.
 	var/obj/item/wrapped = null
 
-/obj/item/weapon/gripper/attack_self(mob/user as mob)
+/obj/item/borg/gripper/attack_self(mob/user as mob)
 	if(wrapped)
 		wrapped.attack_self(user)
 
-/obj/item/weapon/gripper/verb/drop_item()
-
+/obj/item/borg/gripper/verb/drop_item()
 	set name = "Drop Item"
 	set desc = "Release an item from your magnetic gripper."
 	set category = "Drone"
@@ -53,11 +53,10 @@
 	wrapped = null
 	//update_icon()
 
-/obj/item/weapon/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/borg/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	return
 
-/obj/item/weapon/gripper/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
-
+/obj/item/borg/gripper/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
 	if(!target || !flag) //Target is invalid or we are not adjacent.
 		return
 
@@ -68,7 +67,6 @@
 			break
 
 	if(wrapped) //Already have an item.
-
 		wrapped.loc = user
 		//Pass the attack on to the target.
 		target.attackby(wrapped,user)
@@ -95,10 +93,14 @@
 
 		//Check if the item is blacklisted.
 		var/grab = 0
-		for(var/typepath in can_hold)
-			if(istype(I,typepath))
-				grab = 1
-				break
+
+		if(overpowered)
+			grab = 1
+		else
+			for(var/typepath in can_hold)
+				if(istype(I,typepath))
+					grab = 1
+					break
 
 		//We can grab the item, finally.
 		if(grab)
@@ -127,12 +129,10 @@
 				user.visible_message("\red [user] removes the power cell from [A]!", "You remove the power cell.")
 
 //TODO: Matter decompiler.
-/obj/item/weapon/matter_decompiler
-
+/obj/item/borg/matter_decompiler
 	name = "matter decompiler"
 	desc = "Eating trash, bits of glass, or other debris will replenish your stores."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "decompiler"
+	icon_state = "gripper"
 
 	//Metal, glass, wood, plastic.
 	var/list/stored_comms = list(
@@ -142,10 +142,10 @@
 		"plastic" = 0
 		)
 
-/obj/item/weapon/matter_decompiler/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/borg/matter_decompiler/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	return
 
-/obj/item/weapon/matter_decompiler/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/borg/matter_decompiler/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
 
 	if(!flag) return //Not adjacent.
 
@@ -169,7 +169,6 @@
 			return
 
 		else if(istype(M,/mob/living/silicon/robot/drone) && !M.client)
-
 			var/mob/living/silicon/robot/drone/D = src.loc
 
 			if(!istype(D))
@@ -258,7 +257,6 @@
 
 //PRETTIER TOOL LIST.
 /mob/living/silicon/robot/drone/installed_modules()
-
 	if(weapon_lock)
 		src << "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]"
 		return
@@ -281,7 +279,6 @@
 	var/resources = "<BR><B>Resources</B><BR>"
 
 	for (var/O in module.modules)
-
 		var/module_string = ""
 
 		if (!O)
@@ -291,10 +288,10 @@
 		else
 			module_string += text("[O]: <A HREF=?src=\ref[src];act=\ref[O]>Activate</A><BR>")
 
-		if((istype(O,/obj/item/weapon) || istype(O,/obj/item/device)) && !(istype(O,/obj/item/weapon/cable_coil)))
-			tools += module_string
-		else
+		if(istype(O, /obj/item/stack) || istype(O,/obj/item/weapon/cable_coil))
 			resources += module_string
+		else
+			tools += module_string
 
 	dat += tools
 
@@ -312,7 +309,6 @@
 
 //Putting the decompiler here to avoid doing list checks every tick.
 /mob/living/silicon/robot/drone/use_power()
-
 	..()
 	if(!src.has_power || !decompiler)
 		return

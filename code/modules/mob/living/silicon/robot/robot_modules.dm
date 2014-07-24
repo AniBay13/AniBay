@@ -315,6 +315,7 @@
 		)
 
 	New()
+		src.modules += new /obj/item/borg/sight/meson(src)
 		src.modules += new /obj/item/weapon/weldingtool(src)
 		src.modules += new /obj/item/weapon/screwdriver(src)
 		src.modules += new /obj/item/weapon/wrench(src)
@@ -322,8 +323,8 @@
 		src.modules += new /obj/item/weapon/wirecutters(src)
 		src.modules += new /obj/item/device/multitool(src)
 		src.modules += new /obj/item/device/lightreplacer(src)
-		src.modules += new /obj/item/weapon/gripper(src)
-		src.modules += new /obj/item/weapon/matter_decompiler(src)
+		src.modules += new /obj/item/borg/gripper(src)
+		src.modules += new /obj/item/borg/matter_decompiler(src)
 		src.modules += new /obj/item/weapon/reagent_containers/spray/cleaner/drone(src)
 
 		src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
@@ -365,7 +366,7 @@
 /obj/item/proc/is_robot_module()
 	if (!istype(src.loc, /mob/living/silicon/robot))
 		return 0
-	
+
 	var/mob/living/silicon/robot/R = src.loc
-	
+
 	return (src in R.module.modules)

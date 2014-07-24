@@ -4,7 +4,6 @@
 	fireloss += burn
 
 /mob/living/silicon/robot/drone/heal_overall_damage(var/brute, var/burn)
-
 	bruteloss -= brute
 	fireloss -= burn
 

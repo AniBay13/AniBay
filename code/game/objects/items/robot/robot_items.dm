@@ -1,4 +1,6 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
+/obj/item/borg
+	icon = 'icons/obj/robot_items.dmi'
+
 
 /**********************************************************************
 						Cyborg Spec Items
@@ -6,8 +8,7 @@
 //Might want to move this into several files later but for now it works here
 /obj/item/borg/stun
 	name = "electrified arm"
-	icon = 'icons/obj/decals.dmi'
-	icon_state = "shock"
+	icon_state = "elecarm"
 
 	attack(mob/M as mob, mob/living/silicon/robot/user as mob)
 		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [src.name] by [user.name] ([user.ckey])</font>")
@@ -34,7 +35,6 @@
 						HUD/SIGHT things
 ***********************************************************************/
 /obj/item/borg/sight
-	icon = 'icons/obj/decals.dmi'
 	icon_state = "securearea"
 	var/sight_mode = null
 
@@ -48,14 +48,12 @@
 	name = "\proper thermal vision"
 	sight_mode = BORGTHERM
 	icon_state = "thermal"
-	icon = 'icons/obj/clothing/glasses.dmi'
 
 
 /obj/item/borg/sight/meson
 	name = "\proper meson vision"
 	sight_mode = BORGMESON
 	icon_state = "meson"
-	icon = 'icons/obj/clothing/glasses.dmi'
 
 /obj/item/borg/sight/hud
 	name = "hud"
@@ -65,7 +63,6 @@
 /obj/item/borg/sight/hud/med
 	name = "medical hud"
 	icon_state = "healthhud"
-	icon = 'icons/obj/clothing/glasses.dmi'
 
 	New()
 		..()
@@ -76,7 +73,6 @@
 /obj/item/borg/sight/hud/sec
 	name = "security hud"
 	icon_state = "securityhud"
-	icon = 'icons/obj/clothing/glasses.dmi'
 
 	New()
 		..()
