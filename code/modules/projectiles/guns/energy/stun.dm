@@ -72,6 +72,7 @@
 	projectile_type = "/obj/item/projectile/energy/bolt"
 	cell_type = "/obj/item/weapon/cell/crap"
 	var/charge_tick = 0
+	fire_delay = 3
 
 
 	New()

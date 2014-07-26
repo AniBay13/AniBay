@@ -37,16 +37,17 @@
 /obj/item/projectile/energy/bolt
 	name = "bolt"
 	icon_state = "cbbolt"
-	damage = 10
+	damage = 15
 	damage_type = TOX
 	nodamage = 0
-	agony = 40
-	stutter = 10
+	agony = 30
+	weaken = 12
+	stutter = 15
 
 
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"
-	damage = 20
+	damage = 30
 
 
 /obj/item/projectile/energy/neurotoxin
