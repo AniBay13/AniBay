@@ -149,3 +149,13 @@
 					prob(1);/obj/item/nutrient,\
 					prob(1);/obj/item/bodybag,\
 					prob(1);/obj/item/candle)
+
+/obj/random/storage
+	name = "Rack or closet or crate"
+	desc = "This is a random item."
+	icon = 'icons/obj/closet.dmi'
+	icon_state = "syndicate1"
+	item_to_spawn()
+		return pick(prob(1);/obj/structure/closet,\
+					prob(1);/obj/structure/closet/crate,\
+					prob(1);/obj/structure/rack)

@@ -1427,6 +1427,15 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Server Room"
 	icon_state = "server"
 
+/area/rnd/rdstorage
+	name = "\improper Research Division Storage"
+	icon_state = "toxlab"
+
+/area/rnd/telelab
+	name = "\improper Teleresearch Lab"
+	icon_state = "toxlab"
+
+
 //Storage
 
 /area/storage/tools

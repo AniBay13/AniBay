@@ -1458,5 +1458,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\anibay1.5.dmm"
+#include "maps\work_in_progress\anibay1.5.dmm"
 // END_INCLUDE
