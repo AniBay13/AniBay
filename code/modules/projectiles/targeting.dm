@@ -249,15 +249,14 @@ client/var
 
 //These are called by the on-screen buttons, adjusting what the victim can and cannot do.
 
+
+
 client/proc/remove_gun_icons()
 	if(!usr) return 1 // Runtime prevention on N00k agents spawning with SMG
 	screen -= usr.item_use_icon
 	screen -= usr.gun_move_icon
 	if (target_can_move)
 		screen -= usr.gun_run_icon
-	del usr.gun_move_icon
-	del usr.item_use_icon
-	del usr.gun_run_icon
 
 client/verb/ToggleGunMode()
 	set hidden = 1
@@ -280,7 +279,7 @@ client/verb/AllowTargetMove()
 	target_can_move = !target_can_move
 	if(target_can_move)
 		usr << "Target may now walk."
-		usr.gun_run_icon = new /obj/screen/gun/run(null)	//adding icon for running permission
+		//usr.gun_run_icon = new /obj/screen/gun/run(null)	//adding icon for running permission
 		screen += usr.gun_run_icon
 	else
 		usr << "Target may no longer move."

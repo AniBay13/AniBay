@@ -29,6 +29,19 @@
 	//Item currently being held.
 	var/obj/item/wrapped = null
 
+/obj/item/borg/gripper/paperwork
+	name = "paperwork gripper"
+	desc = "A simple grasping tool for clerical work."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gripper"
+
+	can_hold = list(
+		/obj/item/weapon/clipboard,
+		/obj/item/weapon/paper,
+		/obj/item/weapon/paper_bundle,
+		/obj/item/weapon/card/id
+		)
+
 /obj/item/borg/gripper/attack_self(mob/user as mob)
 	if(wrapped)
 		wrapped.attack_self(user)
