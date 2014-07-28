@@ -1,3 +1,8 @@
+/turf/simulated/floor/darkfloor
+	name = "floor"
+	icon = 'icons/newgreen/darkfloors.dmi'
+	icon_state = "darkfull"
+
 /turf/simulated/floor/airless
 	icon_state = "floor"
 	name = "airless floor"
@@ -154,7 +159,7 @@
 	name = "skipjack floor"
 	oxygen = 0
 	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
-	
+
 /turf/simulated/floor/beach
 	name = "Beach"
 	icon = 'icons/misc/beach.dmi'
