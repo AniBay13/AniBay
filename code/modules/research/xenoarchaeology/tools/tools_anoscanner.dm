@@ -10,20 +10,20 @@
 	slot_flags = SLOT_BELT
 	var/nearest_artifact_id = "unknown"
 	var/nearest_artifact_distance = -1
-	var/last_scan_time = 0
+	var/in_cooldown = 0
 	var/scan_delay = 25
 
-/obj/item/device/ano_scanner/initialize()
-	scan()
+/*/obj/item/device/ano_scanner/initialize()
+	scan() --why?*/
 
 /obj/item/device/ano_scanner/attack_self(var/mob/user as mob)
 	return src.interact(user)
 
 /obj/item/device/ano_scanner/interact(var/mob/user as mob)
 	var/message = "Background radiation levels detected."
-	if(world.time - last_scan_time >= scan_delay)
-		spawn(0)
-			scan()
+	if(!in_cooldown)
+		scan() //NEVER put spawn(0) here again. It causes a bug.
+		spawn (scan_delay)	in_cooldown = 0
 		if(nearest_artifact_distance >= 0)
 			message = "Exotic energy detected on wavelength '[nearest_artifact_id]' in a radius of [nearest_artifact_distance]m"
 	else
@@ -32,9 +32,6 @@
 	user << "<span class='info'>[message]</span>"
 
 /obj/item/device/ano_scanner/proc/scan()
-	set background = 1
-
-	last_scan_time = world.time
 	nearest_artifact_distance = -1
 	var/turf/cur_turf = get_turf(src)
 	if(master_controller) //Sanity check due to runtimes ~Z
