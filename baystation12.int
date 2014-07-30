@@ -1,11 +1,9 @@
 // BEGIN_INTERNALS
 /*
-MAP_ICON_TYPE: 0
-WINDOW: maps\work_in_progress\anibay1.6.dmm;maps\tgstation2.dmm;maps\anibay1.6.dmm
-LAST_COMPILE_VERSION: 501.1217
-DIR: code code\game code\game\objects\items\stacks\sheets code\game\turfs code\game\turfs\simulated icons icons\newgreen maps maps\work_in_progress 
-FILE: maps\anibay1.6.dmm
 LAST_COMPILE_TIME: 1406546225
+DIR: code code\game code\game\objects\items\stacks\sheets code\game\turfs code\game\turfs\simulated icons icons\newgreen maps 
 AUTO_FILE_DIR: OFF
+MAP_ICON_TYPE: 0
+LAST_COMPILE_VERSION: 501.1217
 */
 // END_INTERNALS
