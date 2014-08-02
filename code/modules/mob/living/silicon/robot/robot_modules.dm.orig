@@ -87,6 +87,7 @@
 		/obj/item/stack/medical/advanced/bruise_pack = 5,
 		/obj/item/stack/nanopaste = 5
 		)
+<<<<<<< HEAD
 
 	New()
 		src.modules += new /obj/item/device/flashlight(src)
@@ -112,6 +113,33 @@
 		src.emag.name = "Polyacid spray"
 		return
 
+=======
+
+	New()
+		src.modules += new /obj/item/device/flashlight(src)
+		src.modules += new /obj/item/device/flash(src)
+		src.modules += new /obj/item/device/healthanalyzer(src)
+		src.modules += new /obj/item/weapon/reagent_containers/borghypo/surgeon(src)
+		src.modules += new /obj/item/weapon/scalpel(src)
+		src.modules += new /obj/item/weapon/hemostat(src)
+		src.modules += new /obj/item/weapon/retractor(src)
+		src.modules += new /obj/item/weapon/cautery(src)
+		src.modules += new /obj/item/weapon/bonegel(src)
+		src.modules += new /obj/item/weapon/FixOVein(src)
+		src.modules += new /obj/item/weapon/bonesetter(src)
+		src.modules += new /obj/item/weapon/circular_saw(src)
+		src.modules += new /obj/item/weapon/surgicaldrill(src)
+		src.modules += new /obj/item/weapon/extinguisher/mini(src)
+		src.modules += new /obj/item/stack/medical/advanced/bruise_pack(src)
+		src.modules += new /obj/item/stack/nanopaste(src)
+
+		src.emag = new /obj/item/weapon/reagent_containers/spray(src)
+
+		src.emag.reagents.add_reagent("pacid", 250)
+		src.emag.name = "Polyacid spray"
+		return
+
+>>>>>>> upstream/master
 /obj/item/weapon/robot_module/surgeon/respawn_consumable(var/mob/living/silicon/robot/R)
 	if(src.emag)
 		var/obj/item/weapon/reagent_containers/spray/PS = src.emag
@@ -209,8 +237,13 @@
 		src.modules += new /obj/item/device/t_scanner(src)
 		src.modules += new /obj/item/device/analyzer(src)
 		src.modules += new /obj/item/taperoll/engineering(src)
+<<<<<<< HEAD
+		src.modules += new /obj/item/borg/gripper(src)
+		src.modules += new /obj/item/borg/matter_decompiler(src)
+=======
 		src.modules += new /obj/item/weapon/gripper(src)
 		src.modules += new /obj/item/weapon/matter_decompiler(src)
+>>>>>>> upstream/master
 
 		src.emag = new /obj/item/borg/stun(src)
 
@@ -333,7 +366,11 @@
 		src.modules += new /obj/item/device/flash(src)
 		src.modules += new /obj/item/weapon/pen/robopen(src)
 		src.modules += new /obj/item/weapon/form_printer(src)
+<<<<<<< HEAD
+		src.modules += new /obj/item/borg/gripper/paperwork(src)
+=======
 		src.modules += new /obj/item/weapon/gripper/paperwork(src)
+>>>>>>> upstream/master
 
 		src.emag = new /obj/item/weapon/stamp/denied(src)
 
@@ -399,14 +436,20 @@
 /obj/item/weapon/robot_module/drone
 	name = "drone module"
 	stacktypes = list(
+<<<<<<< HEAD
 		/obj/item/stack/sheet/wood/cyborg = 1,
 		/obj/item/stack/sheet/mineral/plastic/cyborg = 1,
 		/obj/item/stack/sheet/rglass/cyborg = 5,
+=======
+		/obj/item/stack/sheet/wood = 1,
+		/obj/item/stack/sheet/mineral/plastic = 1,
+		/obj/item/stack/sheet/rglass = 5,
+>>>>>>> upstream/master
 		/obj/item/stack/tile/wood = 5,
 		/obj/item/stack/rods = 15,
 		/obj/item/stack/tile/plasteel = 15,
-		/obj/item/stack/sheet/metal/cyborg = 20,
-		/obj/item/stack/sheet/glass/cyborg = 20,
+		/obj/item/stack/sheet/metal = 20,
+		/obj/item/stack/sheet/glass = 20,
 		/obj/item/weapon/cable_coil = 30
 		)
 
@@ -453,8 +496,4 @@
 
 	var/mob/living/silicon/robot/R = src.loc
 
-<<<<<<< HEAD
 	return (src in R.module.modules)
-=======
-	return (src in R.module.modules)
->>>>>>> upstream/master

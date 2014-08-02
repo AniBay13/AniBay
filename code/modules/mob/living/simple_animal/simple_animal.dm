@@ -141,18 +141,18 @@
 	//Atmos
 	var/atmos_suitable = 1
 
-	var/atom/A = src.loc
+	var/atom/A = src.loc		
 
 	if(istype(A,/turf))
-		var/turf/T = A
-
+		var/turf/T = A	
+		
 		var/datum/gas_mixture/Environment = T.return_air()
 
 		if(Environment)
-
+			
 			if( abs(Environment.temperature - bodytemperature) > 40 )
 				bodytemperature += ((Environment.temperature - bodytemperature) / 5)
-
+			
 			if(min_oxy)
 				if(Environment.oxygen < min_oxy)
 					atmos_suitable = 0

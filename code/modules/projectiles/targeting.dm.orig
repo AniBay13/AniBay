@@ -249,6 +249,8 @@ client/var
 
 //These are called by the on-screen buttons, adjusting what the victim can and cannot do.
 <<<<<<< HEAD
+
+
 =======
 client/proc/add_gun_icons()
 	screen += usr.item_use_icon
