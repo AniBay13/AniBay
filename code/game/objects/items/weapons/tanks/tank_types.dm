@@ -95,7 +95,7 @@
  * plasma
  */
 /obj/item/weapon/tank/plasma
-	name = "plasma tank"
+	name = "Plasma tank"
 	desc = "Contains dangerous plasma. Do not inhale. Warning: extremely flammable."
 	icon_state = "plasma"
 	flags = FPRINT | TABLEPASS | CONDUCT

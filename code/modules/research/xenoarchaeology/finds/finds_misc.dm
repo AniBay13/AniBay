@@ -1,6 +1,6 @@
 
 /obj/item/weapon/shard/plasma
-	name = "plasma shard"
+	name = "Plasma shard"
 	desc = "A shard of plasma glass. Considerably tougher then normal glass shards. Apparently not tough enough to be a window."
 	force = 8.0
 	throwforce = 15.0

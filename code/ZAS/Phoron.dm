@@ -2,7 +2,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /pl_control
 	var/plasma_DMG = 3
-	var/plasma_DMG_NAME = "plasma Damage Amount"
+	var/plasma_DMG_NAME = "Plasma Damage Amount"
 	var/plasma_DMG_DESC = "Self Descriptive"
 
 	var/CLOTH_CONTAMINATION = 1
@@ -10,7 +10,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	var/CLOTH_CONTAMINATION_DESC = "If this is on, plasma does damage by getting into cloth."
 
 	var/plasmaGUARD_ONLY = 0
-	var/plasmaGUARD_ONLY_NAME = "\"plasmaGuard Only\""
+	var/plasmaGUARD_ONLY_NAME = "\"PlasmaGuard Only\""
 	var/plasmaGUARD_ONLY_DESC = "If this is on, only biosuits and spacesuits protect against contamination and ill effects."
 
 	var/GENETIC_CORRUPTION = 0
@@ -18,19 +18,19 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	var/GENETIC_CORRUPTION_DESC = "Chance of genetic corruption as well as toxic damage, X in 10,000."
 
 	var/SKIN_BURNS = 0
-	var/SKIN_BURNS_DESC = "plasma has an effect similar to mustard gas on the un-suited."
+	var/SKIN_BURNS_DESC = "Plasma has an effect similar to mustard gas on the un-suited."
 	var/SKIN_BURNS_NAME = "Skin Burns"
 
 	var/EYE_BURNS = 1
 	var/EYE_BURNS_NAME = "Eye Burns"
-	var/EYE_BURNS_DESC = "plasma burns the eyes of anyone not wearing eye protection."
+	var/EYE_BURNS_DESC = "Plasma burns the eyes of anyone not wearing eye protection."
 
 	var/CONTAMINATION_LOSS = 0.02
 	var/CONTAMINATION_LOSS_NAME = "Contamination Loss"
 	var/CONTAMINATION_LOSS_DESC = "How much toxin damage is dealt from contaminated clothing" //Per tick?  ASK ARYN
 
 	var/plasma_HALLUCINATION = 0
-	var/plasma_HALLUCINATION_NAME = "plasma Hallucination"
+	var/plasma_HALLUCINATION_NAME = "Plasma Hallucination"
 	var/plasma_HALLUCINATION_DESC = "Does being in plasma cause you to hallucinate?"
 
 	var/N2O_HALLUCINATION = 1

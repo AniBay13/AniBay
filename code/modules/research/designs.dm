@@ -1583,7 +1583,7 @@ datum/design/stunshell
 	build_path = "/obj/item/ammo_casing/shotgun/stunshell"
 
 datum/design/plasmapistol
-	name = "plasma pistol"
+	name = "Plasma pistol"
 	desc = "A specialized firearm designed to fire lethal bolts of plasma."
 	id = "ppistol"
 	req_tech = list("combat" = 5, "plasmatech" = 4)

@@ -196,7 +196,7 @@ obj/item/weapon/gun/energy/staff/focus
 	*/
 
 /obj/item/weapon/gun/energy/toxgun
-	name = "plasma pistol"
+	name = "Plasma pistol"
 	desc = "A specialized firearm designed to fire lethal bolts of plasma."
 	icon_state = "toxgun"
 	fire_sound = 'sound/effects/stealthoff.ogg'
