@@ -109,7 +109,7 @@
 			close()
 
 	if(needs_to_close)
-		spawn(50)
+		spawn(400)//50 WAS TOO FAST
 			alarmed = 0
 			for(var/area/A in areas_added)		//Just in case a fire alarm is turned off while the firedoor is going through an autoclose cycle
 				if(A.fire || A.air_doors_activated)

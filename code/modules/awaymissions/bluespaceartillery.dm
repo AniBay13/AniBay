@@ -1,6 +1,7 @@
 
 /obj/machinery/artillerycontrol
-	var/reload = 180
+	var/reload = 1800
+	var/ammo = 3
 	name = "bluespace artillery control"
 	icon_state = "control_boxp1"
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
@@ -8,7 +9,7 @@
 	anchored = 1
 
 /obj/machinery/artillerycontrol/process()
-	if(src.reload<180)
+	if(src.reload<1800)
 		src.reload++
 
 /obj/structure/artilleryplaceholder
@@ -24,7 +25,9 @@
 	user.set_machine(src)
 	var/dat = "<B>Bluespace Artillery Control:</B><BR>"
 	dat += "Locked on<BR>"
-	dat += "<B>Charge progress: [reload]/180:</B><BR>"
+	dat += "<B>Ammo: [ammo] uranium balls(0.012 g)<BR>"
+	dat += "<B>Charge progress: [reload]/1800:</B><BR>"
+	dat += "<B>DANGER:</B> YOU USING SEMI-AUTO MODE, TARGETING PROBLEMS MAY APPEAR.<br>"
 	dat += "<A href='byond://?src=\ref[src];fire=1'>Open Fire</A><BR>"
 	dat += "Deployment of weapon authorized by <br>Nanotrasen Naval Command<br><br>Remember, friendly fire is grounds for termination of your contract and life.<HR>"
 	user << browse(dat, "window=scroll")
@@ -40,7 +43,8 @@
 		A = input("Area to jump bombard", "Open Fire", A) in teleportlocs
 		var/area/thearea = teleportlocs[A]
 		if (usr.stat || usr.restrained()) return
-		if(src.reload < 180) return
+		if(src.reload < 1800) return
+		if(!ammo) return
 		if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
 			command_alert("Bluespace artillery fire detected. Brace for impact.")
 			message_admins("[key_name_admin(usr)] has launched an artillery strike.", 1)
@@ -48,8 +52,11 @@
 			for(var/turf/T in get_area_turfs(thearea.type))
 				L+=T
 			var/loc = pick(L)
-			explosion(loc,2,5,11)
+			if(prob(5))
+				loc = src.loc
 			reload = 0
+			ammo--
+			explosion(loc,2,5,11)
 
 /*mob/proc/openfire()
 	var/A
