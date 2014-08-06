@@ -610,7 +610,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Engineering"
 
 /datum/supply_packs/plasma
-	name = "plasma assembly crate"
+	name = "Plasma assembly crate"
 	contains = list(/obj/item/weapon/tank/plasma,
 					/obj/item/weapon/tank/plasma,
 					/obj/item/weapon/tank/plasma,
@@ -625,7 +625,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/device/assembly/timer)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/plasma
-	containername = "plasma assembly crate"
+	containername = "Plasma assembly crate"
 	access = access_tox_storage
 	group = "Medical / Science"
 
@@ -1238,9 +1238,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/machinery/portable_atmospherics/canister/nitrogen)
 
 /datum/supply_packs/canister_plasma
-	name = "plasma gas canister"
+	name = "Plasma gas canister"
 	cost = 60
-	containername = "plasma gas canister crate"
+	containername = "Plasma gas canister crate"
 	containertype = /obj/structure/closet/crate/secure/large
 	access = access_atmospherics
 	group = "Engineering"

@@ -374,7 +374,7 @@
 	basestate = "window"
 
 /obj/structure/window/plasmabasic
-	name = "plasma window"
+	name = "Plasma window"
 	desc = "A plasma-glass alloy window. It looks insanely tough to break. It appears it's also insanely tough to burn through."
 	basestate = "plasmawindow"
 	icon_state = "plasmawindow"
