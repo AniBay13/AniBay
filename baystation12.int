@@ -3,9 +3,9 @@
 MAP_ICON_TYPE: 0
 WINDOW: maps\anibay1.6.dmm;maps\tgstation2.dmm
 LAST_COMPILE_VERSION: 501.1217
-DIR: code code\game code\game\area code\game\objects\items\stacks\sheets code\game\turfs code\game\turfs\simulated icons icons\newgreen maps 
+DIR: code code\game code\game\area code\game\gamemodes code\game\gamemodes\autotraitor code\game\gamemodes\blob code\game\gamemodes\changeling code\game\gamemodes\cult code\game\gamemodes\epidemic code\game\gamemodes\extended code\game\gamemodes\heist code\game\gamemodes\revolution code\game\gamemodes\traitor code\game\gamemodes\wizard maps 
 FILE: maps\anibay1.6.dmm
-LAST_COMPILE_TIME: 1406924641
+LAST_COMPILE_TIME: 1407175191
 AUTO_FILE_DIR: OFF
 */
 // END_INTERNALS
