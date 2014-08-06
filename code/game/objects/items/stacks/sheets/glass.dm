@@ -312,7 +312,7 @@
  * plasma Glass sheets
  */
 /obj/item/stack/sheet/glass/plasmaglass
-	name = "plasma glass"
+	name = "Plasma glass"
 	desc = "A very strong and very resistant sheet of a plasma-glass alloy."
 	singular_name = "plasma glass sheet"
 	icon_state = "sheet-plasmaglass"

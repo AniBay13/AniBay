@@ -191,13 +191,13 @@ var/global/vs_control/vsc = new
 		plc.Randomize(V)
 
 /vs_control/proc/SetDefault(var/mob/user)
-	var/list/setting_choices = list("plasma - Standard", "plasma - Low Hazard", "plasma - High Hazard", "plasma - Oh Shit!",\
-	"ZAS - Normal", "ZAS - Forgiving", "ZAS - Dangerous", "ZAS - Hellish", "ZAS/plasma - Initial")
+	var/list/setting_choices = list("Plasma - Standard", "Plasma - Low Hazard", "Plasma - High Hazard", "Plasma - Oh Shit!",\
+	"ZAS - Normal", "ZAS - Forgiving", "ZAS - Dangerous", "ZAS - Hellish", "ZAS/Plasma - Initial")
 	var/def = input(user, "Which of these presets should be used?") as null|anything in setting_choices
 	if(!def)
 		return
 	switch(def)
-		if("plasma - Standard")
+		if("Plasma - Standard")
 			plc.CLOTH_CONTAMINATION = 1 //If this is on, plasma does damage by getting into cloth.
 			plc.plasmaGUARD_ONLY = 0
 			plc.GENETIC_CORRUPTION = 0 //Chance of genetic corruption as well as toxic damage, X in 1000.
@@ -206,7 +206,7 @@ var/global/vs_control/vsc = new
 			plc.plasma_HALLUCINATION = 0
 			plc.CONTAMINATION_LOSS = 0.02
 
-		if("plasma - Low Hazard")
+		if("Plasma - Low Hazard")
 			plc.CLOTH_CONTAMINATION = 0 //If this is on, plasma does damage by getting into cloth.
 			plc.plasmaGUARD_ONLY = 0
 			plc.GENETIC_CORRUPTION = 0 //Chance of genetic corruption as well as toxic damage, X in 1000
@@ -215,7 +215,7 @@ var/global/vs_control/vsc = new
 			plc.plasma_HALLUCINATION = 0
 			plc.CONTAMINATION_LOSS = 0.01
 
-		if("plasma - High Hazard")
+		if("Plasma - High Hazard")
 			plc.CLOTH_CONTAMINATION = 1 //If this is on, plasma does damage by getting into cloth.
 			plc.plasmaGUARD_ONLY = 0
 			plc.GENETIC_CORRUPTION = 0 //Chance of genetic corruption as well as toxic damage, X in 1000.
@@ -224,7 +224,7 @@ var/global/vs_control/vsc = new
 			plc.plasma_HALLUCINATION = 1
 			plc.CONTAMINATION_LOSS = 0.05
 
-		if("plasma - Oh Shit!")
+		if("Plasma - Oh Shit!")
 			plc.CLOTH_CONTAMINATION = 1 //If this is on, plasma does damage by getting into cloth.
 			plc.plasmaGUARD_ONLY = 1
 			plc.GENETIC_CORRUPTION = 5 //Chance of genetic corruption as well as toxic damage, X in 1000.
@@ -290,7 +290,7 @@ var/global/vs_control/vsc = new
 			airflow_mob_slowdown = 3
 			connection_insulation = 0
 
-		if("ZAS/plasma - Initial")
+		if("ZAS/Plasma - Initial")
 			fire_consuption_rate 			= initial(fire_consuption_rate)
 			fire_firelevel_multiplier 		= initial(fire_firelevel_multiplier)
 			fire_fuel_energy_release 		= initial(fire_fuel_energy_release)

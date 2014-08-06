@@ -70,7 +70,7 @@
 	..()
 
 /turf/simulated/wall/mineral/plasma
-	name = "plasma wall"
+	name = "Plasma wall"
 	desc = "A wall with plasma plating. This is definately a bad idea."
 	icon_state = "plasma0"
 	walltype = "plasma"

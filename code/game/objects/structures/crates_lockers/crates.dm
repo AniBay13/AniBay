@@ -434,7 +434,7 @@
 
 /obj/structure/closet/crate/secure/plasma
 	desc = "A secure plasma crate."
-	name = "plasma crate"
+	name = "Plasma crate"
 	icon_state = "plasmacrate"
 	icon_opened = "plasmacrateopen"
 	icon_closed = "plasmacrate"
