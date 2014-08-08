@@ -48,7 +48,7 @@
 	//Clear ability list and update from mob.
 	client.verbs -= ability_verbs
 
-	if(abilities)
+	if(abilities && istype(src, /mob/living)) //It has caused crashing one time. It won't do that anymore.
 		client.verbs |= abilities
 
 	if(istype(src,/mob/living/carbon/human))
