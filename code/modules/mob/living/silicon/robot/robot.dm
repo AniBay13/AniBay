@@ -1112,7 +1112,7 @@
 
 	if (href_list["act"])
 		var/obj/item/O = locate(href_list["act"])
-		if (!istype(O) || !(O.loc == src || O.loc == src.module))
+		if ( !(O && module && O in module.modules) )
 			return
 
 		if(activated(O))
@@ -1120,28 +1120,24 @@
 			return
 		if(!module_state_1)
 			module_state_1 = O
-			O.layer = 20
-			contents += O
 			if(istype(module_state_1,/obj/item/borg/sight))
 				sight_mode |= module_state_1:sight_mode
-			if (module)
-				module.contents -= O
+			O.layer = 20
+			contents += O
+
 		else if(!module_state_2)
 			module_state_2 = O
-			O.layer = 20
-			contents += O
 			if(istype(module_state_2,/obj/item/borg/sight))
 				sight_mode |= module_state_2:sight_mode
-			if (module)
-				module.contents -= O
-		else if(!module_state_3)
-			module_state_3 = O
 			O.layer = 20
 			contents += O
+
+		else if(!module_state_3)
+			module_state_3 = O
 			if(istype(module_state_3,/obj/item/borg/sight))
 				sight_mode |= module_state_3:sight_mode
-			if (module)
-				module.contents -= O
+			O.layer = 20
+			contents += O
 		else
 			src << "You need to disable a module first!"
 		installed_modules()
@@ -1152,20 +1148,14 @@
 			if(module_state_1 == O)
 				module_state_1 = null
 				contents -= O
-				if (module)
-					module.contents += O
 
 			else if(module_state_2 == O)
 				module_state_2 = null
 				contents -= O
-				if (module)
-					module.contents += O
 
 			else if(module_state_3 == O)
 				module_state_3 = null
 				contents -= O
-				if (module) //All these in case module is not selected
-					module.contents += O
 
 			else
 				src << "Module isn't activated."
