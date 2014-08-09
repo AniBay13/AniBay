@@ -1,3 +1,4 @@
+var/list/area/fire_zones = list(/area/rnd/mixing, /area/maintenance/incinerator)
 /turf/simulated/wall
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
@@ -21,6 +22,11 @@
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
 	var/walltype = "metal"
+
+/turf/simulated/wall/New()
+	..()
+	if (src.loc.type in fire_zones)
+		max_temperature = 90000
 
 /turf/simulated/wall/Del()
 	for(var/obj/effect/E in src) if(E.name == "Wallrot") del E
