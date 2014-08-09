@@ -1,9 +1,11 @@
 // BEGIN_INTERNALS
 /*
 MAP_ICON_TYPE: 0
-LAST_COMPILE_VERSION: 506.1247
-DIR: code\game\area code\game\gamemodes code\game\gamemodes\autotraitor code\game\gamemodes\blob code\game\gamemodes\changeling code\game\gamemodes\cult code\game\gamemodes\epidemic code\game\gamemodes\extended code\game\gamemodes\heist 
-LAST_COMPILE_TIME: 1407524860
+WINDOW: maps\anibay1.6.dmm;maps\tgstation2.dmm
+LAST_COMPILE_VERSION: 501.1217
+DIR: code\game\area code\game\gamemodes code\game\gamemodes\autotraitor code\game\gamemodes\blob code\game\gamemodes\changeling code\game\gamemodes\cult code\game\gamemodes\epidemic code\game\gamemodes\extended code\game\gamemodes\heist maps 
+FILE: maps\anibay1.6.dmm
+LAST_COMPILE_TIME: 1407611643
 AUTO_FILE_DIR: OFF
 */
 // END_INTERNALS
