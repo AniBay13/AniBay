@@ -12,10 +12,6 @@
 
 	var/d_state = 0
 
-/turf/simulated/wall/r_wall/New()
-	..()
-	if (istype(loc, /area/rnd/mixing))
-		max_temperature = 90000
 /turf/simulated/wall/r_wall/attack_hand(mob/user as mob)
 	if (HULK in user.mutations)
 		if (prob(10) || rotting)
