@@ -175,4 +175,4 @@ var/list/beam_master = list()
 	icon_state = "stun"
 	nodamage = 1
 	agony = 60
-	damage_type = BURN
+	damage_type = HALLOSS

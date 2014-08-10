@@ -14,8 +14,7 @@
 	stun = 10
 	weaken = 10
 	stutter = 10
-	damage_type = BURN
-
+	damage_type = HALLOSS
 
 
 /obj/item/projectile/energy/declone
