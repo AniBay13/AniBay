@@ -296,6 +296,18 @@ This function restores all organs.
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
 	updatehealth()
 	hud_updateflag |= 1 << HEALTH_HUD
+
+	if(sharp)
+		if(damage >= 20)
+			if(prob(10))
+				switch(def_zone)
+					if("chest")
+						if(!is_lung_ruptured())
+							rupture_lung()
+					if("eyes")
+						var/datum/organ/internal/eyes/E = internal_organs_by_name["eyes"]
+						E.damage += rand(10,30)
+
 /*
 	//Embedded object code.
 	if(!organ) return
@@ -305,7 +317,7 @@ This function restores all organs.
 			//blunt objects should really not be embedding in things unless a huge amount of force is involved
 			var/embed_chance = sharp? damage/W.w_class : damage/(W.w_class*3)
 			var/embed_threshold = sharp? 5*W.w_class : 15*W.w_class
-			
+
 			//Sharp objects will always embed if they do enough damage.
 			//Thrown objects have some momentum already and have a small chance to embed even if the damage is below the threshold
 			if((sharp && damage > (10*W.w_class)) || (sharp && !ismob(W.loc) && prob(damage/(10*W.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
