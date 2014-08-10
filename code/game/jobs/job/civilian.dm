@@ -45,7 +45,7 @@
 	flag = CHEF
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 2
+	total_positions = 1
 	spawn_positions = 2
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
@@ -194,9 +194,6 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), slot_in_backpack)
 		return 1
 
-
-
-//Griff //BS12 EDIT
 
 /datum/job/clown
 	title = "Clown"
