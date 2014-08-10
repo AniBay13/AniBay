@@ -9,7 +9,7 @@
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	layer = 2.9
 	explosion_resistance = 5
-	var/health = 10
+	var/health = 15
 	var/destroyed = 0
 
 
@@ -32,16 +32,41 @@
 
 /obj/structure/grille/attack_hand(mob/user as mob)
 	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
-	user.visible_message("<span class='warning'>[user] kicks [src].</span>", \
+	var/punch = 0
+	switch(puser.zone_sel.selecting)
+		if("right leg","r_leg","left leg","l_leg","right foot","r_foot","left foot","l_foot")
+			punch = 0
+		else
+			punch = 1
+
+	if(HULK in user.mutations)
+		if(shock(user, 100))
+			return
+		user.visible_message("<span class='warning'>[user] crushed [src].</span>", \
+					 "<span class='warning'>You crush [src].</span>", \
+					 "You hear twisting metal.")
+		health -= 15
+	else
+		if(punch)
+			user.visible_message("<span class='warning'>[user] punchs [src].</span>", \
+						 "<span class='warning'>You punch [src].</span>", \
+						 "You hear twisting metal.")
+			if(shock(user, 80))
+				return
+			else
+				health -= 3
+		else
+			user.visible_message("<span class='warning'>[user] kicks [src].</span>", \
 						 "<span class='warning'>You kick [src].</span>", \
 						 "You hear twisting metal.")
-
-	if(shock(user, 70))
-		return
-	if(HULK in user.mutations)
-		health -= 5
-	else
-		health -= 1
+			if(shock(user, 40))
+				return
+			else
+				health -= 5
+			if(prob(20))
+				user.Weaken(5)
+				user.visible_message("<span class='warning'>[user] falls.</span>", \
+							 "<span class='warning'>You fall, while kicking [src].</span>")
 	healthcheck()
 
 /obj/structure/grille/attack_alien(mob/user as mob)
@@ -53,7 +78,7 @@
 						 "You hear twisting metal.")
 
 	if(!shock(user, 70))
-		health -= 5
+		health -= 15
 		healthcheck()
 		return
 
