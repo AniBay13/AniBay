@@ -86,15 +86,6 @@
 				loc = A.loc
 				return 0// nope.avi
 
-			var/distance = get_dist(starting,loc)
-			var/miss_modifier = -30
-
-			if (istype(shot_from,/obj/item/weapon/gun))	//If you aim at someone beforehead, it'll hit more often.
-				var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
-				if (daddy.target && original in daddy.target) //As opposed to no-delay pew pew
-					miss_modifier += -30
-			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + 15*distance)
-
 			if(!def_zone)
 				visible_message("\blue \The [src] misses [M] narrowly!")
 				forcedodge = -1
