@@ -373,11 +373,13 @@
 						for(var/datum/gas/gas in breath.trace_gases)
 							gas.moles *= 1 - G.gas_filter_strength
 						breath.update_values()
-
+/*
+//NO MORE FUKKEN RANDOM, PEOPLE GET AIR OUT OF THEIR LUNGS WHEN THEY BECOME DECOMPRESSED. THIS WAS SHITTY IDEA.
 					if(!is_lung_ruptured())
 						if(!breath || breath.total_moles < BREATH_MOLES / 5 || breath.total_moles > BREATH_MOLES * 5)
 							if(prob(5))
 								rupture_lung()
+*/
 
 					// Handle filtering
 					var/block = 0
