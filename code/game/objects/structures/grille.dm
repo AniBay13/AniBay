@@ -32,8 +32,8 @@
 
 /obj/structure/grille/attack_hand(mob/user as mob)
 	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
-	var/punch = 0
-	switch(puser.zone_sel.selecting)
+	var/punch = 1
+	switch(user.zone_sel.selecting)
 		if("right leg","r_leg","left leg","l_leg","right foot","r_foot","left foot","l_foot")
 			punch = 0
 		else
@@ -59,12 +59,12 @@
 			user.visible_message("<span class='warning'>[user] kicks [src].</span>", \
 						 "<span class='warning'>You kick [src].</span>", \
 						 "You hear twisting metal.")
-			if(shock(user, 40))
+			if(shock(user, 20))
 				return
 			else
 				health -= 5
-			if(prob(20))
-				user.Weaken(5)
+			if(prob(40))
+				user.Weaken(10)
 				user.visible_message("<span class='warning'>[user] falls.</span>", \
 							 "<span class='warning'>You fall, while kicking [src].</span>")
 	healthcheck()
