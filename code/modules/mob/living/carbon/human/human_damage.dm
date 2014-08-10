@@ -296,7 +296,7 @@ This function restores all organs.
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
 	updatehealth()
 	hud_updateflag |= 1 << HEALTH_HUD
-
+/*
 	//Embedded object code.
 	if(!organ) return
 	if(istype(used_weapon,/obj/item))
@@ -312,3 +312,4 @@ This function restores all organs.
 				organ.embed(W)
 
 	return 1
+*/
