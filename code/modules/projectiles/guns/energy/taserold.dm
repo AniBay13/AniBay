@@ -3,7 +3,7 @@
 	name = "taser gun"
 	desc = "A small, low capacity gun used for non-lethal takedowns."
 	icon = 'icons/obj/animus.dmi'
-	icon_state = "tasernew"
+	icon_state = "taserold"
 	projectile_type = "/obj/item/projectile/energy/tasershot"
 	modifystate = "taserold"
 
