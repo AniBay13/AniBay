@@ -14,8 +14,7 @@
 		sparks.set_up(3, 0, get_turf(user))
 		sparks.start()
 		//
-		var/turf/newloc = pick(orange(get_turf(user), 50))
-		user.loc = newloc
+		user.loc = get_turf(pick(orange(get_turf(user), 50)))
 		sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(user))
 		sparks.start()
@@ -34,8 +33,7 @@
 				sparks.set_up(3, 0, get_turf(M))
 				sparks.start()
 				//
-				var/turf/newloc = pick(orange(get_turf(T), 50))
-				M.loc = newloc
+				M.loc = get_turf(pick(orange(get_turf(T), 50)))
 				sparks = new /datum/effect/effect/system/spark_spread()
 				sparks.set_up(3, 0, get_turf(M))
 				sparks.start()
@@ -54,8 +52,7 @@
 				sparks.set_up(3, 0, get_turf(M))
 				sparks.start()
 				//
-				var/turf/newloc = pick(orange(get_turf(T), 50))
-				M.loc = newloc
+				M.loc = get_turf(pick(orange(get_turf(T), 50)))
 				sparks = new /datum/effect/effect/system/spark_spread()
 				sparks.set_up(3, 0, get_turf(M))
 				sparks.start()
