@@ -15,7 +15,9 @@
 	return src.attack_hand(user)
 
 /obj/machinery/computer/drone_control/attack_paw(var/mob/user as mob)
+
 	return src.attack_hand(user)
+	return
 
 /obj/machinery/computer/drone_control/attack_hand(var/mob/user as mob)
 	if(..())
@@ -74,6 +76,7 @@
 				D << "-- Maintenance drone presence requested in: [drone_call_area]."
 
 	else if (href_list["resync"])
+
 		var/mob/living/silicon/robot/drone/D = locate(href_list["resync"])
 
 		if(D.stat != 2)
@@ -81,6 +84,7 @@
 			D.law_resync()
 
 	else if (href_list["shutdown"])
+
 		var/mob/living/silicon/robot/drone/D = locate(href_list["shutdown"])
 
 		if(D.stat != 2)

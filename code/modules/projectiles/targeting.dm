@@ -248,8 +248,11 @@ client/var
 	gun_mode = 0
 
 //These are called by the on-screen buttons, adjusting what the victim can and cannot do.
-
-
+client/proc/add_gun_icons()
+	screen += usr.item_use_icon
+	screen += usr.gun_move_icon
+	if (target_can_move)
+		screen += usr.gun_run_icon
 
 client/proc/remove_gun_icons()
 	if(!usr) return 1 // Runtime prevention on N00k agents spawning with SMG

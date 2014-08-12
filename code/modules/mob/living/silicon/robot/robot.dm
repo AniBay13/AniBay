@@ -92,7 +92,7 @@
 		laws = new /datum/ai_laws/drone()
 		connected_ai = null
 	else
-		laws = new /datum/ai_laws/asimov()
+		laws = new /datum/ai_laws/nanotrasen()
 		connected_ai = select_active_ai_with_fewest_borgs()
 		if(connected_ai)
 			connected_ai.connected_robots += src
@@ -598,6 +598,10 @@
 				return
 
 	if (istype(W, /obj/item/weapon/weldingtool))
+		if (src == user)
+			user << "<span class='warning'>You lack the reach to be able to repair yourself.</span>"
+			return
+
 		if (!getBruteLoss())
 			user << "Nothing to fix here!"
 			return
@@ -1097,10 +1101,10 @@
 
 /mob/living/silicon/robot/Topic(href, href_list)
 	..()
-
+	
 	if(usr != src)
 		return
-
+	
 	if (href_list["showalerts"])
 		robot_alerts()
 		return
@@ -1112,32 +1116,30 @@
 
 	if (href_list["act"])
 		var/obj/item/O = locate(href_list["act"])
-		if ( !(O && module && O in module.modules) )
+		if (!istype(O) || !(O in src.module.modules))
 			return
-
+		
 		if(activated(O))
 			src << "Already activated"
 			return
 		if(!module_state_1)
 			module_state_1 = O
+			O.layer = 20
+			contents += O
 			if(istype(module_state_1,/obj/item/borg/sight))
 				sight_mode |= module_state_1:sight_mode
-			O.layer = 20
-			contents += O
-
 		else if(!module_state_2)
 			module_state_2 = O
+			O.layer = 20
+			contents += O
 			if(istype(module_state_2,/obj/item/borg/sight))
 				sight_mode |= module_state_2:sight_mode
-			O.layer = 20
-			contents += O
-
 		else if(!module_state_3)
 			module_state_3 = O
-			if(istype(module_state_3,/obj/item/borg/sight))
-				sight_mode |= module_state_3:sight_mode
 			O.layer = 20
 			contents += O
+			if(istype(module_state_3,/obj/item/borg/sight))
+				sight_mode |= module_state_3:sight_mode
 		else
 			src << "You need to disable a module first!"
 		installed_modules()
@@ -1148,15 +1150,12 @@
 			if(module_state_1 == O)
 				module_state_1 = null
 				contents -= O
-
 			else if(module_state_2 == O)
 				module_state_2 = null
 				contents -= O
-
 			else if(module_state_3 == O)
 				module_state_3 = null
 				contents -= O
-
 			else
 				src << "Module isn't activated."
 		else

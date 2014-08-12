@@ -21,7 +21,7 @@
 		"Skrell" = 'icons/mob/species/skrell/helmet.dmi'
 		)
 	sprite_sheets_obj = list(
-		"Tajaran" = 'icons/obj/clothing/species/tajaran/suits.dmi',
+		"Tajaran" = 'icons/obj/clothing/species/tajaran/hats.dmi',
 		)
 
 	attack_self(mob/user)
@@ -305,9 +305,6 @@
 	icon_state = "rig0-engineering"
 	item_state = "eng_helm"
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 80)
-	sprite_sheets_obj = list(
-		"Tajaran" = 'icons/obj/clothing/species/tajaran/hats.dmi',
-		)
 
 /obj/item/clothing/suit/space/rig/engineering
 	name = "engineering hardsuit"
@@ -317,12 +314,6 @@
 	slowdown = 1
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 80)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
-
-	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 80)
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
-	sprite_sheets_obj = list(
-		"Tajaran" = 'icons/obj/clothing/species/tajaran/suits.dmi',
-		)
 
 //Chief Engineer's rig
 /obj/item/clothing/head/helmet/space/rig/engineering/chief

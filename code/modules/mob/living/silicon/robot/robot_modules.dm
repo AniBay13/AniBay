@@ -56,7 +56,6 @@
 			modules += O
 
 /obj/item/weapon/robot_module/proc/add_languages(var/mob/living/silicon/robot/R)
-	R.add_language("Tradeband", 0)
 	//full set of languages
 	R.add_language("Sol Common", 1)
 	R.add_language("Tradeband", 1)
@@ -209,8 +208,8 @@
 		src.modules += new /obj/item/device/t_scanner(src)
 		src.modules += new /obj/item/device/analyzer(src)
 		src.modules += new /obj/item/taperoll/engineering(src)
-		src.modules += new /obj/item/borg/gripper(src)
-		src.modules += new /obj/item/borg/matter_decompiler(src)
+		src.modules += new /obj/item/weapon/gripper(src)
+		src.modules += new /obj/item/weapon/matter_decompiler(src)
 
 		src.emag = new /obj/item/borg/stun(src)
 
@@ -333,7 +332,7 @@
 		src.modules += new /obj/item/device/flash(src)
 		src.modules += new /obj/item/weapon/pen/robopen(src)
 		src.modules += new /obj/item/weapon/form_printer(src)
-		src.modules += new /obj/item/borg/gripper/paperwork(src)
+		src.modules += new /obj/item/weapon/gripper/paperwork(src)
 
 		src.emag = new /obj/item/weapon/stamp/denied(src)
 
@@ -411,7 +410,6 @@
 		)
 
 	New()
-		src.modules += new /obj/item/borg/sight/meson(src)
 		src.modules += new /obj/item/weapon/weldingtool(src)
 		src.modules += new /obj/item/weapon/screwdriver(src)
 		src.modules += new /obj/item/weapon/wrench(src)
@@ -419,8 +417,8 @@
 		src.modules += new /obj/item/weapon/wirecutters(src)
 		src.modules += new /obj/item/device/multitool(src)
 		src.modules += new /obj/item/device/lightreplacer(src)
-		src.modules += new /obj/item/borg/gripper(src)
-		src.modules += new /obj/item/borg/matter_decompiler(src)
+		src.modules += new /obj/item/weapon/gripper(src)
+		src.modules += new /obj/item/weapon/matter_decompiler(src)
 		src.modules += new /obj/item/weapon/reagent_containers/spray/cleaner/drone(src)
 
 		src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)

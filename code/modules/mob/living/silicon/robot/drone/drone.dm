@@ -20,15 +20,16 @@
 	var/obj/item/stack/sheet/wood/cyborg/stack_wood = null
 	var/obj/item/stack/sheet/glass/cyborg/stack_glass = null
 	var/obj/item/stack/sheet/mineral/plastic/cyborg/stack_plastic = null
-	var/obj/item/borg/matter_decompiler/decompiler = null
+	var/obj/item/weapon/matter_decompiler/decompiler = null
 
 	//Used for self-mailing.
 	var/mail_destination = ""
 
 	holder_type = /obj/item/weapon/holder/drone
-
 /mob/living/silicon/robot/drone/New()
+
 	..()
+
 	if(camera && "Robots" in camera.network)
 		camera.network.Add("Engineering")
 
@@ -54,7 +55,7 @@
 	stack_plastic = locate(/obj/item/stack/sheet/mineral/plastic/cyborg) in src.module
 
 	//Grab decompiler.
-	decompiler = locate(/obj/item/borg/matter_decompiler) in src.module
+	decompiler = locate(/obj/item/weapon/matter_decompiler) in src.module
 
 	//Some tidying-up.
 	flavor_text = "It's a tiny little repair drone. The casing is stamped with an NT logo and the subscript: 'NanoTrasen Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
@@ -66,6 +67,7 @@
 	name = real_name
 
 /mob/living/silicon/robot/drone/updateicon()
+
 	overlays.Cut()
 	if(stat == 0)
 		overlays += "eyes-[icon_state]"
@@ -81,6 +83,7 @@
 //Drones can only use binary and say emotes. NOTHING else.
 //TBD, fix up boilerplate. ~ Z
 /mob/living/silicon/robot/drone/say(var/message)
+
 	if (!message)
 		return
 
@@ -215,10 +218,10 @@
 //For some goddamn reason robots have this hardcoded. Redefining it for our fragile friends here.
 /mob/living/silicon/robot/drone/updatehealth()
 	if(status_flags & GODMODE)
-		health = maxHealth
+		health = 35
 		stat = CONSCIOUS
 		return
-	health = maxHealth - (getBruteLoss() + getFireLoss())
+	health = 35 - (getBruteLoss() + getFireLoss())
 	return
 
 //Easiest to check this here, then check again in the robot proc.
@@ -236,9 +239,7 @@
 /mob/living/silicon/robot/drone/death(gibbed)
 
 	if(module)
-		var/obj/item/borg/gripper/G = locate(/obj/item/borg/gripper) in module
-		if(G) G.drop_item()
-		G = locate(/obj/item/borg/gripper) in src
+		var/obj/item/weapon/gripper/G = locate(/obj/item/weapon/gripper) in module
 		if(G) G.drop_item()
 
 	..(gibbed)
@@ -294,6 +295,7 @@
 			C.prefs.be_special ^= BE_PAI
 
 /mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
+
 	if(!player) return
 
 	src.ckey = player.ckey

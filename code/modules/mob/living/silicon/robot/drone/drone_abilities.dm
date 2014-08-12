@@ -41,7 +41,7 @@
 	if(luminosity)
 		SetLuminosity(0)
 		return
-	SetLuminosity(3)
+	SetLuminosity(2)
 
 //Actual picking-up event.
 /mob/living/silicon/robot/drone/attack_hand(mob/living/carbon/human/M as mob)

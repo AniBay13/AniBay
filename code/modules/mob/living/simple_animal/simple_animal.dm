@@ -229,7 +229,8 @@
 		adjustBruteLoss(damage)
 
 /mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj)	return
+	if(!Proj || Proj.nodamage)
+		return
 	adjustBruteLoss(Proj.damage)
 	return 0
 
