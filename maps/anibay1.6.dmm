@@ -1224,7 +1224,7 @@
 "axB" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/obj/machinery/camera{c_tag = "Dormitory centre"; dir = 2; name = "security camera"; network = list("SS13")},/obj/machinery/status_display{density = 0; layer = 4; pixel_x = 0; pixel_y = 32},/turf/simulated/floor{dir = 4; icon_state = "bluecorner"},/area/crew_quarters/sleep)
 "axC" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor{dir = 1; icon_state = "blue"},/area/crew_quarters/sleep)
 "axD" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable/yellow{icon_state = "1-2"},/turf/simulated/floor{dir = 1; icon_state = "blue"},/area/crew_quarters/sleep)
-"axE" = (/obj/structure/sign/biohazard{pixel_x = 0; pixel_y = -32},/turf/simulated/floor{dir = 1; icon_state = "bluecorner"},/area/crew_quarters/sleep)
+"axE" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor{dir = 1; icon_state = "bluecorner"},/area)
 "axF" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/light{dir = 1},/turf/simulated/floor{icon_state = "neutral"; dir = 5},/area/crew_quarters/sleep)
 "axG" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/wall,/area/crew_quarters/sleep)
 "axH" = (/obj/structure/cable/yellow{icon_state = "1-2"},/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 5},/turf/simulated/floor{dir = 1; icon_state = "neutralcorner"; tag = "icon-greencorner (NORTH)"},/area/crew_quarters/fitness)
