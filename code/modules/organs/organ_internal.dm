@@ -174,7 +174,7 @@
 			//Broken. Not working at all. Reagents are toxin.
 			else if(src.damage >= src.min_broken_damage)
 				for(var/datum/reagent/R in owner.reagents.reagent_list)
-					if(!istype(R, /datum/reagent/blood) && !istype(R, /datum/reagent/water) && !istype(R, /datum/reagent/anti_toxin))
+					if(!istype(R, /datum/reagent/blood) && !istype(R, /datum/reagent/water) && !istype(R, /datum/reagent/nutriment && !istype(R, /datum/reagent/anti_toxin)))
 						owner.adjustToxLoss(0.1 * Mult)
 			//Damaged. Working, nothing happens.
 
