@@ -44,10 +44,10 @@
 
 		//** Handle the effects of infections
 		var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
-		
+
 		if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 			germ_level--
-		
+
 		if (germ_level >= INFECTION_LEVEL_ONE/2)
 			//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
 			if(antibiotics < 5 && prob(round(germ_level/6)))
@@ -58,7 +58,7 @@
 			//spread germs
 			if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
 				parent.germ_level++
-			
+
 			if (prob(3))	//about once every 30 seconds
 				take_damage(1,silent=prob(30))
 
@@ -125,7 +125,7 @@
 		if (germ_level > INFECTION_LEVEL_ONE)
 			if(prob(5))
 				owner.emote("cough")		//respitory tract infection
-		
+
 		if(is_bruised())
 			if(prob(2))
 				spawn owner.emote("me", 1, "coughs up blood!")
@@ -137,7 +137,8 @@
 /datum/organ/internal/liver
 	name = "liver"
 	parent_organ = "chest"
-	var/process_accuracy = 10
+	var/PA = 21 //Use unique prime numbers here 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53
+	var/Mult = 5 //Use PA/4. Slowing healing and damaging, they was TOO FAST FOR LIVER.
 
 	process()
 		..()
@@ -147,35 +148,35 @@
 		if (germ_level > INFECTION_LEVEL_TWO)
 			if(prob(1))
 				spawn owner.vomit()
-		
-		if(owner.life_tick % process_accuracy == 0)
+
+		if(owner.life_tick % PA == 0)
+
+			//LIVER STATUS CHANGES
+
+			//Supaliver, and nothing else matters.
 			if(src.damage < 0)
 				src.damage = 0
-
-			//High toxins levels are dangerous
-			if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("anti_toxin"))
-				//Healthy liver suffers on its own
+			//Have AT, don't have TOX, healing liver.
+			else if (owner.getToxLoss() < 30 && owner.reagents.has_reagent("anti_toxin") && src.damage && src.damage < src.min_bruised_damage)
+				src.damage -= 0.1 * Mult
+			//Have TOX, don't have AT, damaging liver.
+			else if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("anti_toxin"))
 				if (src.damage < min_broken_damage)
-					src.damage += 0.2 * process_accuracy
-				//Damaged one shares the fun
-				else
-					var/datum/organ/internal/O = pick(owner.internal_organs)
-					if(O)
-						O.damage += 0.2  * process_accuracy
+					src.damage += 0.1 * Mult
+			//Have or don't have AT and TOX, do nothing with liver.
 
-			//Detox can heal small amounts of damage
-			if (src.damage && src.damage < src.min_bruised_damage && owner.reagents.has_reagent("anti_toxin"))
-				src.damage -= 0.2 * process_accuracy
+			//LIVER STATUS
 
-			// Damaged liver means some chemicals are very dangerous
-			if(src.damage >= src.min_bruised_damage)
+			//Good.Working very good. Remove toxins from blood.
+			if(src.damage < src.min_bruised_damage)
+				if(owner.getToxLoss() > 0)
+					owner.adjustToxLoss(-0.1 * Mult)
+			//Broken. Not working at all. Reagents are toxin.
+			else if(src.damage >= src.min_broken_damage)
 				for(var/datum/reagent/R in owner.reagents.reagent_list)
-					// Ethanol and all drinks are bad
-					if(istype(R, /datum/reagent/ethanol))
-						owner.adjustToxLoss(0.1 * process_accuracy)
-					// Can't cope with toxins at all
-					if(istype(R, /datum/reagent/toxin))
-						owner.adjustToxLoss(0.3 * process_accuracy)
+					if(!istype(R, /datum/reagent/blood) && !istype(R, /datum/reagent/water) && !istype(R, /datum/reagent/anti_toxin))
+						owner.adjustToxLoss(0.1 * Mult)
+			//Damaged. Working, nothing happens.
 
 /datum/organ/internal/kidney
 	name = "kidney"
