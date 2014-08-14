@@ -1,15 +1,14 @@
 /obj/item/weapon/gun/energy/gun
 	name = "energy gun"
 	desc = "A basic energy-based gun with two settings: Stun and kill."
-	icon = 'icons/newgreen/ani_gun.dmi'
-	icon_state = "energystun100"
+	icon_state = "oldenergystun100"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
 
 	charge_cost = 100 //How much energy is needed to fire.
 	projectile_type = "/obj/item/projectile/energy/tasershot"
 	origin_tech = "combat=3;magnets=2"
-	modifystate = "energystun"
+	modifystate = "oldenergystun"
 
 	var/mode = 0 //0 = stun, 1 = kill
 
@@ -22,14 +21,14 @@
 				fire_sound = 'sound/weapons/Laser.ogg'
 				user << "\red [src.name] is now set to kill."
 				projectile_type = "/obj/item/projectile/beam"
-				modifystate = "energykill"
+				modifystate = "oldenergykill"
 			if(1)
 				mode = 0
 				charge_cost = 100
 				fire_sound = 'sound/weapons/Taser.ogg'
 				user << "\red [src.name] is now set to stun."
 				projectile_type = "/obj/item/projectile/energy/tasershot"
-				modifystate = "energystun"
+				modifystate = "oldenergystun"
 		update_icon()
 		if(user.l_hand == src)
 			user.update_inv_l_hand()
@@ -42,7 +41,6 @@
 /obj/item/weapon/gun/energy/gun/nuclear
 	name = "Advanced Energy Gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
-	icon = 'icons/obj/gun.dmi'
 	icon_state = "nucgun"
 	origin_tech = "combat=3;materials=5;powerstorage=3"
 	var/lightfail = 0
