@@ -1,5 +1,12 @@
-//Need remove on map, then remove this file
 /obj/item/weapon/gun/energy/taser/dual
+	name = "taser gun"
+	desc = "A small, low capacity gun used for non-lethal takedowns."
+	icon = 'icons/obj/animus.dmi'
+	icon_state = "taser"
+	item_state = "taser"
+	projectile_type = "/obj/item/projectile/energy/tasershot"
+	modifystate = "taserold"
+
 	var/tasermode = 1 //1 = stun, 0 = pain
 
 	attack_self(mob/living/user as mob)
@@ -8,11 +15,49 @@
 				tasermode = 1
 				user << "\red [src.name] is now set to stun."
 				projectile_type = "/obj/item/projectile/energy/tasershot"
+				modifystate = "taserold"
 			if(1)
 				tasermode = 0
 				user << "\red [src.name] is now set to pain."
 				projectile_type = "/obj/item/projectile/beam/stun"
+				modifystate = "tasernew"
+		update_icon()
 
 /obj/item/weapon/gun/energy/taser/old
-	desc = "Old version of NT taser. Have less charges."
-	charge_cost = 150
+	name = "taser gun"
+	desc = "R.I.O.T. NT Taser. One mode, x2 more charges, x1.5 more powerfull."
+	icon = 'icons/obj/animus.dmi'
+	icon_state = "taser"
+	charge_cost = 50
+	projectile_type = "/obj/item/projectile/energy/tasershot/power"
+
+/obj/item/projectile/energy/tasershot
+	name = "electrode"
+	icon_state = "spark"
+	pass_flags = PASSTABLE
+	nodamage = 1
+	stun = 10
+	weaken = 10
+	stutter = 10
+	damage_type = HALLOSS
+
+/obj/item/projectile/energy/tasershot/power
+	name = "electrode"
+	icon_state = "spark"
+	pass_flags = PASSTABLE
+	nodamage = 1
+	stun = 15
+	weaken = 15
+	stutter = 15
+	damage_type = HALLOSS
+
+
+/obj/item/projectile/energy/tasershot/shell
+	name = "electrode"
+	icon_state = "spark"
+	pass_flags = PASSTABLE
+	nodamage = 1
+	stun = 15
+	weaken = 15
+	stutter = 15
+	damage_type = HALLOSS

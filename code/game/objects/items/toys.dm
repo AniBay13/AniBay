@@ -637,6 +637,13 @@
 	item_state = "egg3" // It's the green egg in items_left/righthand
 	w_class = 1
 
+/obj/item/toy/angel
+	name = "Angel"
+	desc = "Angel of light or darkness?"
+	icon = 'icons/obj/angel_statue.dmi'
+	icon_state = "left"
+	w_class = 1
+
 
 /* NYET.
 /obj/item/weapon/toddler
