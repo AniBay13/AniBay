@@ -552,7 +552,7 @@
 					breath.nitrogen += inhaled_gas_used
 				if("plasma")
 					breath.plasma += inhaled_gas_used
-				if("CO2")
+				if("carbon_dioxide")
 					breath.carbon_dioxide += inhaled_gas_used
 
 		// Too much exhaled gas in the air

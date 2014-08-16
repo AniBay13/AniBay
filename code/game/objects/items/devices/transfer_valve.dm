@@ -35,6 +35,8 @@
 			user.drop_item()
 			item.loc = src
 			user << "<span class='notice'>You attach the tank to the transfer valve.</span>"
+			message_admins("[key_name_admin(user)] attached both tanks to a transfer valve.")
+			log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
 
 		update_icon()
 		nanomanager.update_uis(src) // update all UIs attached to src
