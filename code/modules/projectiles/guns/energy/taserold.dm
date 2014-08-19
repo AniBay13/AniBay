@@ -13,11 +13,13 @@
 		switch(tasermode)
 			if(0)
 				tasermode = 1
+				fire_sound = 'sound/weapons/Taser.ogg'
 				user << "\red [src.name] is now set to stun."
 				projectile_type = "/obj/item/projectile/energy/tasershot"
 				modifystate = "taserold"
 			if(1)
 				tasermode = 0
+				fire_sound = 'sound/weapons/Laser.ogg'
 				user << "\red [src.name] is now set to pain."
 				projectile_type = "/obj/item/projectile/beam/stun"
 				modifystate = "tasernew"
@@ -36,9 +38,9 @@
 	icon_state = "spark"
 	pass_flags = PASSTABLE
 	nodamage = 1
-	stun = 10
-	weaken = 10
-	stutter = 10
+	stun = 6
+	weaken = 6
+	stutter = 12
 	damage_type = HALLOSS
 
 /obj/item/projectile/energy/tasershot/power
@@ -46,9 +48,9 @@
 	icon_state = "spark"
 	pass_flags = PASSTABLE
 	nodamage = 1
-	stun = 15
-	weaken = 15
-	stutter = 15
+	stun = 9
+	weaken = 9
+	stutter = 18
 	damage_type = HALLOSS
 
 
@@ -57,7 +59,7 @@
 	icon_state = "spark"
 	pass_flags = PASSTABLE
 	nodamage = 1
-	stun = 15
-	weaken = 15
-	stutter = 15
+	stun = 9
+	weaken = 9
+	stutter = 18
 	damage_type = HALLOSS

@@ -1,17 +1,17 @@
 /obj/item/weapon/gun/energy/gun
 	name = "energy gun"
 	desc = "A basic energy-based gun with two settings: Stun and kill."
-	icon_state = "oldenergystun100"
-	item_state = null	//so the human update icon uses the icon_state instead.
+	icon = 'icons/obj/animus.dmi'
+	icon_state = "energystun"
+	item_state = "energystun"
 	fire_sound = 'sound/weapons/Taser.ogg'
 
 	charge_cost = 100 //How much energy is needed to fire.
 	projectile_type = "/obj/item/projectile/energy/tasershot"
 	origin_tech = "combat=3;magnets=2"
-	modifystate = "oldenergystun"
+	modifystate = "energystun"
 
 	var/mode = 0 //0 = stun, 1 = kill
-
 
 	attack_self(mob/living/user as mob)
 		switch(mode)
@@ -21,14 +21,14 @@
 				fire_sound = 'sound/weapons/Laser.ogg'
 				user << "\red [src.name] is now set to kill."
 				projectile_type = "/obj/item/projectile/beam"
-				modifystate = "oldenergykill"
+				modifystate = "energykill"
 			if(1)
 				mode = 0
 				charge_cost = 100
 				fire_sound = 'sound/weapons/Taser.ogg'
 				user << "\red [src.name] is now set to stun."
 				projectile_type = "/obj/item/projectile/energy/tasershot"
-				modifystate = "oldenergystun"
+				modifystate = "energystun"
 		update_icon()
 		if(user.l_hand == src)
 			user.update_inv_l_hand()
