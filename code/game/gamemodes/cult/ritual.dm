@@ -14,6 +14,7 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 		usr << "[cultwords[word]] is [word]"
 
 /proc/runerandom() //randomizes word meaning
+	if (cultwords.len)	return //More checks for the God of Checks!
 	var/list/runewords=list("ire","ego","nahlizet","certum","veri","jatkaa","mgar","balaq", "karazet", "geeri") ///"orkan" and "allaq" removed.
 	for (var/word in engwords)
 		cultwords[word] = pick(runewords)
