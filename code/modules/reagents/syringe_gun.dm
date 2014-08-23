@@ -110,7 +110,7 @@
 			if(D)
 				for(var/atom/A in D.loc)
 					if(A == user) continue
-					if(A.density) del(D)
+					if(A.density && !istype(A, /obj/structure/table)) del(D)
 
 			sleep(1)
 
@@ -132,6 +132,7 @@
 	icon_state = "null"
 	anchored = 1
 	density = 0
+	pass_flags = PASSTABLE
 
 	New()
 		var/datum/reagents/R = new/datum/reagents(15)
