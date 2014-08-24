@@ -427,8 +427,8 @@ area
 #undef LIGHTING_CIRCULAR
 //#undef LIGHTING_ICON
 
-#define LIGHTING_MAX_LUMINOSITY_STATIC	8	//Maximum luminosity to reduce lag.
-#define LIGHTING_MAX_LUMINOSITY_MOBILE	5	//Moving objects have a lower max luminosity since these update more often. (lag reduction)
+#define LIGHTING_MAX_LUMINOSITY_STATIC	9	//Maximum luminosity to reduce lag.
+#define LIGHTING_MAX_LUMINOSITY_MOBILE	7	//Moving objects have a lower max luminosity since these update more often. (lag reduction)
 #define LIGHTING_MAX_LUMINOSITY_TURF	1	//turfs have a severely shortened range to protect from inevitable floor-lighttile spam.
 
 //set the changed status of all lights which could have possibly lit this atom.
