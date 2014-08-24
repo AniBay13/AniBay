@@ -1,7 +1,7 @@
 /obj/item/weapon/gun/energy/taser/dual
 	name = "taser gun"
 	desc = "A small, low capacity gun used for non-lethal takedowns."
-	icon = 'icons/obj/animus.dmi'
+	icon = 'icons/newgreen/guns.dmi'
 	icon_state = "taser"
 	item_state = "taser"
 	projectile_type = "/obj/item/projectile/energy/tasershot"
@@ -28,7 +28,7 @@
 /obj/item/weapon/gun/energy/taser/old
 	name = "taser gun"
 	desc = "R.I.O.T. NT Taser. One mode, x2 more charges, x1.5 more powerfull."
-	icon = 'icons/obj/animus.dmi'
+	icon = 'icons/newgreen/guns.dmi'
 	icon_state = "taser"
 	charge_cost = 50
 	projectile_type = "/obj/item/projectile/energy/tasershot/power"

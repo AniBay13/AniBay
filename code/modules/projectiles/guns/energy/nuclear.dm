@@ -1,7 +1,7 @@
 /obj/item/weapon/gun/energy/gun
 	name = "energy gun"
 	desc = "A basic energy-based gun with two settings: Stun and kill."
-	icon = 'icons/obj/animus.dmi'
+	icon = 'icons/newgreen/guns.dmi'
 	icon_state = "energystun"
 	item_state = "energystun"
 	fire_sound = 'sound/weapons/Taser.ogg'

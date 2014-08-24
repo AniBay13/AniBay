@@ -3,8 +3,8 @@
 
 /obj/item/device/analyzer/plant_analyzer
 	name = "plant analyzer"
-	icon = 'icons/obj/device.dmi'
-	icon_state = "hydro"
+	icon = 'icons/newgreen/objects.dmi'
+	icon_state = "plant"
 	item_state = "analyzer"
 
 	attack_self(mob/user as mob)
@@ -215,7 +215,7 @@
 	throw_speed = 4
 	throw_range = 4
 	sharp = 1
-	edge = 1	
+	edge = 1
 	matter = list("metal" = 15000)
 	origin_tech = "materials=2;combat=1"
 	attack_verb = list("chopped", "torn", "cut")

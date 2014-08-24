@@ -1,6 +1,6 @@
 /turf/simulated/floor/darkfloor
 	name = "floor"
-	icon = 'icons/newgreen/darkfloors.dmi'
+	icon = 'icons/newgreen/greenfloors.dmi'
 	icon_state = "darkfull"
 
 /turf/simulated/floor/airless
