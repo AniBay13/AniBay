@@ -165,6 +165,12 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 		else
 			return fizzle()
 
+	Crossed(mob/living/M)
+		if(!istype(M))
+			return ..()
+		if(word1 == cultwords["see"] && word2 == cultwords["hell"] && word3 == cultwords["join"])
+			return seer()
+
 
 	proc
 		fizzle()
