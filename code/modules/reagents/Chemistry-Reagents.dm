@@ -1907,7 +1907,7 @@ datum
 			reagent_state = LIQUID
 			color = "#DB5008" // rgb: 219, 80, 8
 			toxpwr = 1
-			var/meltprob = 10
+			var/meltprob = 50
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
@@ -1991,7 +1991,7 @@ datum
 			reagent_state = LIQUID
 			color = "#8E18A9" // rgb: 142, 24, 169
 			toxpwr = 2
-			meltprob = 30
+			meltprob = 100
 
 /////////////////////////Food Reagents////////////////////////////
 // Part of the food code. Nutriment is used instead of the old "heal_amt" code. Also is where all the food
