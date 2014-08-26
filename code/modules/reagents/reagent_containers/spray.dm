@@ -240,7 +240,7 @@
 
 
 /obj/item/weapon/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
-	if(!proximity) return
+	//if(!proximity) return
 
 	if (istype(A, /obj/machinery/hydroponics)) // We are targeting hydrotray
 		return
