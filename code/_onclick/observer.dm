@@ -21,7 +21,11 @@
 
 	// Things you might plausibly want to follow
 	if((ismob(A) && A != src) || istype(A,/obj/machinery/bot) || istype(A,/obj/machinery/singularity))
-		ManualFollow(A)
+		if(following && following == A)
+			return
+		following = A
+		src << "\blue Now following [A]"
+		src.verbs += /mob/dead/observer/verb/cancel_follow
 
 	// Otherwise jump
 	else
