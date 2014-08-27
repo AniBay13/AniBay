@@ -73,8 +73,12 @@
 /mob/dead/observer/Topic(href, href_list)
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in mob_list
-		if(target)
-			ManualFollow(target)
+		if(target && target != src)
+			if(following && following == target)
+				return
+			following = target
+			src << "\blue Now following [target]"
+			src.verbs += /mob/dead/observer/verb/cancel_follow
 
 
 
