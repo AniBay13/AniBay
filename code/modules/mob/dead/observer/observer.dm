@@ -314,27 +314,22 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/list/mobs = getmobs()
 	var/input = input("Please, select a mob!", "Haunt", null, null) as null|anything in mobs
 	var/mob/target = mobs[input]
-	ManualFollow(target)
-
-// This is the ghost's follow verb with an argument
-/mob/dead/observer/proc/ManualFollow(var/atom/movable/target)
 	if(target && target != src)
 		if(following && following == target)
 			return
 		following = target
 		src << "\blue Now following [target]"
-		spawn(0)
-			var/turf/pos = get_turf(src)
-			while(loc == pos && target && following == target && client)
-				var/turf/T = get_turf(target)
-				if(!T)
-					break
-				// To stop the ghost flickering.
-				if(loc != T)
-					loc = T
-				pos = loc
-				sleep(15)
-			following = null
+		src.verbs += /mob/dead/observer/verb/cancel_follow
+
+/mob/dead/observer/verb/cancel_follow()
+	set category = "Ghost"
+	set name = "Cancel following" // "Haunt"
+	set desc = "Cancel following"
+	
+	following = null
+	src.verbs -= /mob/dead/observer/verb/cancel_follow
+		
+
 
 
 /mob/dead/observer/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
