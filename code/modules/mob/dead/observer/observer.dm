@@ -77,6 +77,7 @@
 			if(following && following == target)
 				return
 			following = target
+			src.loc = get_turf(target)
 			src << "\blue Now following [target]"
 			src.verbs += /mob/dead/observer/verb/cancel_follow
 
@@ -201,6 +202,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	for(var/obj/effect/step_trigger/S in locate(x, y, z))	//<-- this is dumb
 		S.HasEntered(src)
+		
 
 /mob/dead/observer/examine()
 	if(usr)
@@ -322,6 +324,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(following && following == target)
 			return
 		following = target
+		src.loc = get_turf(target)
 		src << "\blue Now following [target]"
 		src.verbs += /mob/dead/observer/verb/cancel_follow
 
