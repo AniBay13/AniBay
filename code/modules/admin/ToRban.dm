@@ -21,9 +21,10 @@
 	return
 
 /proc/ToRban_update()
-	spawn(0)
+/*
+spawn(0)
 		log_misc("Downloading updated ToR data...")
-		var/list/http[] = world.Export("http://exitlist.torproject.org/exit-addresses")
+		var/list/http[] = world.Export("http://exitlist.torproject.org/exit-addresses") //Doesn't work anymore
 		
 		if (!http || http.len < 1)	return 0
 		var/list/rawlist = file2list(http["CONTENT"])
@@ -42,6 +43,8 @@
 			return 1
 		log_misc("ToR data update aborted: no data.")
 		return 0
+*/
+	return 0
 
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"
