@@ -79,8 +79,6 @@
 			following = target
 			src.loc = get_turf(target)
 			src << "\blue Now following [target]"
-			src.verbs += /mob/dead/observer/verb/cancel_follow
-
 
 
 /mob/dead/attackby(obj/item/W, mob/user)
@@ -202,7 +200,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	for(var/obj/effect/step_trigger/S in locate(x, y, z))	//<-- this is dumb
 		S.HasEntered(src)
-		
+
+	following = null //Moving aside cancels following
+
 
 /mob/dead/observer/examine()
 	if(usr)
@@ -326,18 +326,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		following = target
 		src.loc = get_turf(target)
 		src << "\blue Now following [target]"
-		src.verbs += /mob/dead/observer/verb/cancel_follow
-
-/mob/dead/observer/verb/cancel_follow()
-	set category = "Ghost"
-	set name = "Cancel following" // "Haunt"
-	set desc = "Cancel following"
-	
-	following = null
-	src.verbs -= /mob/dead/observer/verb/cancel_follow
-		
-
-
 
 /mob/dead/observer/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"

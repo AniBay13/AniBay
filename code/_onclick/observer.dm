@@ -26,8 +26,6 @@
 		following = A
 		src.loc = get_turf(A)
 		src << "\blue Now following [A]"
-		src.verbs += /mob/dead/observer/verb/cancel_follow
-
 	// Otherwise jump
 	else
 		loc = get_turf(A)

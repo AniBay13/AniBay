@@ -439,10 +439,10 @@
 	if(update_slimes)
 		for(var/mob/living/carbon/slime/M in view(1,src))
 			M.UpdateFeed(src)
-	
+
 	for (var/mob/dead/observer/ghost in world)
 		if (ghost.following == src)
-			ghost.Move(get_turf(ghost.following))
+			ghost.loc = get_turf(ghost.following)
 
 /mob/living/verb/resist()
 	set name = "Resist"
