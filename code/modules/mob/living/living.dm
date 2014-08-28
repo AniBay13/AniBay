@@ -442,7 +442,17 @@
 
 	for (var/mob/dead/observer/ghost in world)
 		if (ghost.following == src)
-			ghost.loc = get_turf(ghost.following)
+			if (get_turf(ghost) == get_turf(src))
+				ghost.loc = get_turf(ghost.following)
+			else
+				ghost.following = null
+			for (var/mob/dead/observer/ghost_followers in world)
+				if (ghost_followers == ghost)	continue
+				if (ghost_followers.following == ghost)
+					if (get_turf(ghost_followers) == get_turf(ghost))
+						ghost_followers.loc = get_turf(ghost_followers.following)
+					else
+						ghost_followers.following = null //OMG...
 
 /mob/living/verb/resist()
 	set name = "Resist"
