@@ -123,6 +123,7 @@ obj/machinery/gateway/centerstation/process()
 		M.dir = SOUTH
 		return
 	else
+		if (awaydestinations.len < 1)	return
 		var/obj/effect/landmark/dest = pick(awaydestinations)
 		if(dest)
 			M.loc = dest.loc
