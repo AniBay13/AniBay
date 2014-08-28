@@ -124,28 +124,28 @@ var/last_chew = 0
 	breakouttime = 300 //Deciseconds = 30s
 
 /obj/item/weapon/handcuffs/cable/red
-	color = "#DD0000"
+	color = COLOR_RED
 
 /obj/item/weapon/handcuffs/cable/yellow
-	color = "#DDDD00"
+	color = COLOR_YELLOW
 
 /obj/item/weapon/handcuffs/cable/blue
-	color = "#0000DD"
+	color = COLOR_BLUE
 
 /obj/item/weapon/handcuffs/cable/green
-	color = "#00DD00"
+	color = COLOR_GREEN
 
 /obj/item/weapon/handcuffs/cable/pink
-	color = "#DD00DD"
+	color = COLOR_PINK
 
 /obj/item/weapon/handcuffs/cable/orange
-	color = "#DD8800"
+	color = COLOR_ORANGE
 
 /obj/item/weapon/handcuffs/cable/cyan
-	color = "#00DDDD"
+	color = COLOR_CYAN
 
 /obj/item/weapon/handcuffs/cable/white
-	color = "#FFFFFF"
+	color = COLOR_WHITE
 
 /obj/item/weapon/handcuffs/cable/attackby(var/obj/item/I, mob/user as mob)
 	..()
