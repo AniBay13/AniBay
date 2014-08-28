@@ -120,6 +120,7 @@
 
 	if(istype(ident, /obj/item/device/pda))
 		var/obj/item/device/pda/PDA = ident
+		if (!PDA.id)	return 0
 		access = PDA.id.access
 		auth_name = "[PDA.id.registered_name] ([PDA.id.assignment])"
 		dna_hash = PDA.id.dna_hash
