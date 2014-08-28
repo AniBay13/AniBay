@@ -542,13 +542,15 @@
 		new_item.desc = src.desc
 
 		if(talkative)
-			new_item.talking_atom = new()
+			new_item.talking_atom = new /datum/talking_atom
+			if (!new_item.talking_atom)	return 0
 			talking_atom.holder_atom = new_item
 			talking_atom.init()
 
 		del(src)
 
 	else if(talkative)
-		src.talking_atom = new()
+		src.talking_atom = new /datum/talking_atom
+		if (!talking_atom)	return
 		talking_atom.holder_atom = src
 		talking_atom.init()
