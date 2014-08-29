@@ -162,7 +162,7 @@
 
 	if(mob.control_object)	Move_object(direct)
 
-	if(isobserver(mob))	return mob.Move(n,direct)
+	if(isobserver(mob))	return mob.Move(n,direct, 1)
 
 	if(moving)	return 0
 
