@@ -544,8 +544,8 @@
 		if(talkative)
 			new_item.talking_atom = new /datum/talking_atom
 			if (!new_item.talking_atom)	return 0
-			talking_atom.holder_atom = new_item
-			talking_atom.init()
+			new_item.talking_atom.holder_atom = new_item
+			new_item.talking_atom.init()
 
 		del(src)
 
