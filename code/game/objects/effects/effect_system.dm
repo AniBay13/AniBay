@@ -348,6 +348,7 @@ steam.start() -- spawns the effect
 			for(i=0, i<pick(0,1,1,1,2,2,2,3), i++)
 				sleep(10)
 				step(smoke,direction)
+			if (!smoke)	src.total_smoke--
 			spawn(smoke.time_to_live*0.75+rand(10,30))
 				if (smoke) smoke.delete()
 				src.total_smoke--
