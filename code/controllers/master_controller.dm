@@ -257,6 +257,9 @@ datum/controller/game_controller/proc/process_mobs()
 				expensive_mobs += M
 			i++
 			continue
+		if (i==mob_list.len)
+			mob_list.len -= 1
+			continue
 		mob_list.Cut(i,i+1)
 
 datum/controller/game_controller/proc/process_diseases()
@@ -268,12 +271,16 @@ datum/controller/game_controller/proc/process_diseases()
 			Disease.process()
 			i++
 			continue
+		if (i==active_diseases.len)
+			active_diseases.len -= 1
+			continue
 		active_diseases.Cut(i,i+1)
 
 datum/controller/game_controller/proc/process_machines()
 	process_machines_process()
 	process_machines_power()
 	process_machines_rebuild()
+	
 datum/controller/game_controller/proc/process_machines_process()
 	var/i = 1
 	while(i<=machines.len)
@@ -284,6 +291,9 @@ datum/controller/game_controller/proc/process_machines_process()
 				if(Machine)
 					i++
 					continue
+		if (i==machines.len)
+			machines.len -= 1
+			continue
 		machines.Cut(i,i+1)
 
 datum/controller/game_controller/proc/process_machines_power()
@@ -303,6 +313,9 @@ datum/controller/game_controller/proc/process_machines_power()
 			continue
 
 		A.powerupdate = 0
+		if (i==active_areas.len)
+			active_areas.len -= 1
+			continue
 		active_areas.Cut(i,i+1)
 
 datum/controller/game_controller/proc/process_machines_rebuild()
@@ -323,6 +336,9 @@ datum/controller/game_controller/proc/process_objects()
 			Object.process()
 			i++
 			continue
+		if (i==processing_objects.len)
+			processing_objects.len -= 1
+			continue
 		processing_objects.Cut(i,i+1)
 
 datum/controller/game_controller/proc/process_pipenets()
@@ -333,6 +349,9 @@ datum/controller/game_controller/proc/process_pipenets()
 		if(Network)
 			Network.process()
 			i++
+			continue
+		if (i==pipe_networks.len)
+			pipe_networks.len -= 1
 			continue
 		pipe_networks.Cut(i,i+1)
 
@@ -345,6 +364,9 @@ datum/controller/game_controller/proc/process_powernets()
 			Powernet.reset()
 			i++
 			continue
+		if (i==powernets.len)
+			powernets.len -= 1
+			continue
 		powernets.Cut(i,i+1)
 
 datum/controller/game_controller/proc/process_nano()
@@ -354,6 +376,9 @@ datum/controller/game_controller/proc/process_nano()
 		if(ui)
 			ui.process()
 			i++
+			continue
+		if (!nanomanager.processing_uis && i==nanomanager.processing_uis.len)
+			nanomanager.processing_uis.len -= 1
 			continue
 		nanomanager.processing_uis.Cut(i,i+1)
 
@@ -365,6 +390,9 @@ datum/controller/game_controller/proc/process_events()
 		if(Event)
 			Event.process()
 			i++
+			continue
+		if (i==events.len)
+			events.len -= 1
 			continue
 		events.Cut(i,i+1)
 	checkEvent()
