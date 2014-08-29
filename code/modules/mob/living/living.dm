@@ -442,11 +442,11 @@
 
 	for (var/mob/dead/observer/ghost in world)
 		if (ghost.following == src)
-			ghost.Move(get_turf(src))
+			ghost.Move(get_turf(src), ghost.dir, 0)
 			for (var/mob/dead/observer/ghost_followers in world)
 				if (ghost_followers == ghost)	continue
 				if (ghost_followers.following == ghost)
-					ghost_followers.Move(get_turf(ghost_followers.following))
+					ghost_followers.Move(get_turf(ghost_followers.following), ghost_followers.dir, 0)
 
 /mob/living/verb/resist()
 	set name = "Resist"

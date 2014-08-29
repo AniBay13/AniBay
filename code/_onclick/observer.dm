@@ -24,11 +24,11 @@
 		if(following && following == A)
 			return
 		following = A
-		src.Move(get_turf(A), dir, 1)
+		src.Move(get_turf(A), dir, 0)
 		src << "\blue Now following [A]"
 	// Otherwise jump
 	else
-		Move(get_turf(A), dir)
+		Move(get_turf(A), dir, 0)
 
 /mob/dead/observer/ClickOn(var/atom/A, var/params)
 	if(client.buildmode)
