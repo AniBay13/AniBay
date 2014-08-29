@@ -60,5 +60,5 @@
 	
 	spawn(0)
 		if (istype(src, /mob/dead))
-			if (!mob.client.holder && !config.antag_hud_allowed)
-				mob.verbs -= /mob/dead/observer/verb/toggle_antagHUD
+			if (!src.client.holder && !config.antag_hud_allowed)
+				src.verbs -= /mob/dead/observer/verb/toggle_antagHUD
