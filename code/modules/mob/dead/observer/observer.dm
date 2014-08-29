@@ -181,9 +181,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return
 
 
-/mob/dead/observer/Move(NewLoc, direct)
+/mob/dead/observer/Move(NewLoc, direct, cancel_follow=0)
 	dir = direct
-	following = null //Moving aside cancels following
+	if (cancel_follow)
+		following = null //Moving aside cancels following
 
 	if(NewLoc)
 		loc = NewLoc
@@ -191,11 +192,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			S.HasEntered(src)
 			for (var/mob/dead/observer/ghost in world)
 				if (ghost.following == src)
-					if (get_turf(ghost) == get_turf(src))
-						ghost.loc = get_turf(ghost.following)
-					else
-						ghost.following = null
+					ghost.loc = get_turf(ghost.following)
 			return
+
 	loc = get_turf(src) //Get out of closets and such as a ghost
 	if((direct & NORTH) && y < world.maxy)
 		y++
