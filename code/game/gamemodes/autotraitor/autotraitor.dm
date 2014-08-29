@@ -50,7 +50,7 @@
 
 
 	for(var/i = 0, i < num_traitors, i++)
-		if (!possible_traitots.len)	break //No one to add anymore.
+		if (!possible_traitors.len)	break //No one to add anymore.
 		var/datum/mind/traitor = pick(possible_traitors)
 		traitors += traitor
 		possible_traitors.Remove(traitor)
