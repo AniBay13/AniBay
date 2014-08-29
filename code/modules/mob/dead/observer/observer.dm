@@ -154,8 +154,9 @@ Works together with spawning an observer, noted above.
 		var/mob/dead/observer/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.timeofdeath //BS12 EDIT
-		ghost.key = key
-		if(!ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
+		ghost.ckey = ckey
+		sleep(1)
+		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
 			ghost.verbs -= /mob/dead/observer/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 		return ghost
 
