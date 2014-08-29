@@ -140,6 +140,7 @@
 		return 1
 
 	var/list/L = src.req_access
+	if (!islist(L))	return 1
 	if(!L.len && (!src.req_one_access || !src.req_one_access.len)) //no requirements
 		return 1
 	if(!I)
