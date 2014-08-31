@@ -1460,6 +1460,6 @@
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\anibay1.6.dmm"
-#include "maps\RandomZLevels\challenge.dm"
-#include "maps\RandomZLevels\challenge.dmm"
+#include "maps\RandomZLevels\stationCollision.dm"
+#include "maps\RandomZLevels\stationCollision.dmm"
 // END_INCLUDE
