@@ -157,12 +157,12 @@
 	PT.master = V
 	OT.master = V
 
-	PT.air_contents.temperature = plasma_FLASHPOINT
+	PT.air_contents.temperature = PLASMA_FLASHPOINT
 	PT.air_contents.plasma = pla
 	PT.air_contents.carbon_dioxide = car
 	PT.air_contents.update_values()
 
-	OT.air_contents.temperature = plasma_FLASHPOINT
+	OT.air_contents.temperature = PLASMA_FLASHPOINT
 	OT.air_contents.oxygen = oxy
 	OT.air_contents.update_values()
 
