@@ -183,6 +183,10 @@
 					return
 				M.inertia_dir = M.last_move
 				step(M, M.inertia_dir)
+	//else if(istype(A, /obj/vehicle))
+	//	var/obj/vehicle/V = A
+
+
 	return
 
 /turf/proc/levelupdate()

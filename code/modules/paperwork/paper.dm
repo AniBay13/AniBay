@@ -113,7 +113,7 @@
 		user.visible_message("<span class='notice'>You show the paper to [M]. </span>", \
 			"<span class='notice'> [user] holds up a paper and shows it to [M]. </span>")
 		M << examine()
-	
+
 	else if(user.zone_sel.selecting == "mouth") // lipstick wiping
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -324,7 +324,7 @@
 				message_admins("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
 				return
 */
-		t = html_encode(t)
+		t = rhtml_encode(t)
 		t = replacetext(t, "\n", "<BR>")
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
 
