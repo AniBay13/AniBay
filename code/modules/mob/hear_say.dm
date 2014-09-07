@@ -34,7 +34,6 @@
 	
 	if (speaker)
 		speaker_name = speaker.name
-	else
 		
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
