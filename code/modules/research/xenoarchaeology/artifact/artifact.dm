@@ -47,12 +47,13 @@
 
 /obj/structure/boulder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/device/core_sampler))
-		src.geological_data.artifact_distance = rand(-100,100) / 100
-		src.geological_data.artifact_id = artifact_find.artifact_id
-
-		var/obj/item/device/core_sampler/C = W
-		C.sample_item(src, user)
-		return
+		if (geological_data)
+			src.geological_data.artifact_distance = rand(-100,100) / 100
+			src.geological_data.artifact_id = artifact_find.artifact_id
+	
+			var/obj/item/device/core_sampler/C = W
+			C.sample_item(src, user)
+			return
 
 	if (istype(W, /obj/item/device/depth_scanner))
 		var/obj/item/device/depth_scanner/C = W
