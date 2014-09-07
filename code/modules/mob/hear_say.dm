@@ -29,8 +29,13 @@
 
 	if(language)
 		style = language.colour
-
-	var/speaker_name = speaker.name
+	
+	var/speaker_name = "Unknown"
+	
+	if (speaker)
+		speaker_name = speaker.name
+	else
+		
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
 		speaker_name = H.GetVoice()
@@ -94,7 +99,10 @@
 	if(hard_to_hear)
 		message = stars(message)
 
-	var/speaker_name = speaker.name
+	var/speaker_name = "Unknown"
+	
+	if (speaker)
+		speaker_name = speaker.name
 
 	if(vname)
 		speaker_name = vname
