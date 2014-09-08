@@ -45,7 +45,7 @@
 		while(index)
 			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
 			index = findtext(t, char)
-	t = html_encode(t)
+	t = rhtml_encode(t)
 	var/index = findtext(t, "____255_")
 	while(index)
 		t = copytext(t, 1, index) + "&#255;" + copytext(t, index+8)
@@ -62,34 +62,34 @@ proc/sanitize_russian(var/msg) //Специально для всего, где не нужно убирать пере
 /proc/sanitize_uni(var/t,var/list/repl_chars = null)
 	return sanitize_simple_uni(t,repl_chars)
 
-/proc/rhtml_encode(var/msg)
+/proc/rrhtml_encode(var/msg)
 	var/list/c = text2list(msg, "я")
 	if(c.len == 1)
 		c = text2list(msg, "&#255;")
 		if(c.len == 1)
-			return html_encode(msg)
+			return rhtml_encode(msg)
 	var/out = ""
 	var/first = 1
 	for(var/text in c)
 		if(!first)
 			out += "&#255;"
 		first = 0
-		out += html_encode(text)
+		out += rhtml_encode(text)
 	return out
 
-/proc/rhtml_decode(var/msg)
+/proc/rrhtml_decode(var/msg)
 	var/list/c = text2list(msg, "я")
 	if(c.len == 1)
 		c = text2list(msg, "&#255;")
 		if(c.len == 1)
-			return html_decode(msg)
+			return rhtml_decode(msg)
 	var/out = ""
 	var/first = 1
 	for(var/text in c)
 		if(!first)
 			out += "&#255;"
 		first = 0
-		out += html_decode(text)
+		out += rhtml_decode(text)
 	return out
 
  /*
@@ -168,7 +168,7 @@ proc/intonation(text)
 
 // For drunken speak, etc
 proc/slurring_uni(phrase) // using cp1251!
-	phrase = html_decode(phrase)
+	phrase = rhtml_decode(phrase)
 	var/index = findtext(phrase, "я")
 	while(index)
 		phrase = copytext(phrase, 1, index) + "Я" + copytext(phrase, index+1)
@@ -198,7 +198,7 @@ proc/slurring_uni(phrase) // using cp1251!
 	return newphrase
 
 proc/stutter_uni(phrase,stunned)
-	phrase = html_decode(phrase)
+	phrase = rhtml_decode(phrase)
 
 	var/list/split_phrase = dd_text2list(phrase," ") //Split it up into words.
 

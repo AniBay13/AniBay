@@ -818,7 +818,7 @@ datum/preferences
 
 				if(medmsg != null)
 					medmsg = copytext(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
-					medmsg = rhtml_encode(medmsg)
+					medmsg = rrhtml_encode(medmsg)
 
 					med_record = medmsg
 					SetRecords(user)
@@ -828,7 +828,7 @@ datum/preferences
 
 				if(secmsg != null)
 					secmsg = copytext(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
-					secmsg = rhtml_encode(secmsg)
+					secmsg = rrhtml_encode(secmsg)
 
 					sec_record = secmsg
 					SetRecords(user)
@@ -837,7 +837,7 @@ datum/preferences
 
 				if(genmsg != null)
 					genmsg = copytext(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
-					genmsg = rhtml_encode(genmsg)
+					genmsg = rrhtml_encode(genmsg)
 
 					gen_record = genmsg
 					SetRecords(user)
@@ -894,16 +894,16 @@ datum/preferences
 						user << "\red That item will exceed the maximum loadout cost of [MAX_GEAR_COST] points."
 
 			else if(href_list["task"] == "remove")
-			
+
 				if(isnull(gear) || !islist(gear))
 					gear = list()
 				if(!gear.len)
 					return
-				
-				var/choice = input(user, "Select gear to remove: ") as null|anything in gear				
+
+				var/choice = input(user, "Select gear to remove: ") as null|anything in gear
 				if(!choice)
 					return
-				
+
 				for(var/gear_name in gear)
 					if(gear_name == choice)
 						gear -= gear_name
