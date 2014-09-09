@@ -283,7 +283,7 @@
 		var/list/chg = list(0,1,1)	// Charging: nope, charging, full
 		var/apcData[0]
 		for(var/obj/machinery/power/apc/A in L)
-			apcData[++apcData.len] = list("Name" = rrhtml_encode(A.area.name), "Equipment" = Status[A.equipment+1], "Lights" = Status[A.lighting+1], "Environment" = Status[A.environ+1], "CellPct" = A.cell ? round(A.cell.percent(),1) : -1, "CellStatus" = A.cell ? chg[A.charging+1] : 0)
+			apcData[++apcData.len] = list("Name" = rhtml_encode(A.area.name), "Equipment" = Status[A.equipment+1], "Lights" = Status[A.lighting+1], "Environment" = Status[A.environ+1], "CellPct" = A.cell ? round(A.cell.percent(),1) : -1, "CellStatus" = A.cell ? chg[A.charging+1] : 0)
 
 		values["apcs"] = apcData
 
@@ -421,7 +421,7 @@
 		for(var/S in supply_controller.shoppinglist)
 			var/datum/supply_order/SO = S
 
-			supplyOrderData[++supplyOrderData.len] = list("Number" = SO.ordernum, "Name" = rrhtml_encode(SO.object.name), "ApprovedBy" = SO.orderedby, "Comment" = rrhtml_encode(SO.comment))
+			supplyOrderData[++supplyOrderData.len] = list("Number" = SO.ordernum, "Name" = rhtml_encode(SO.object.name), "ApprovedBy" = SO.orderedby, "Comment" = rhtml_encode(SO.comment))
 		if(!supplyOrderData.len)
 			supplyOrderData[++supplyOrderData.len] = list("Number" = null, "Name" = null, "OrderedBy"=null)
 
@@ -433,7 +433,7 @@
 		for(var/S in supply_controller.requestlist)
 			var/datum/supply_order/SO = S
 			requestCount++
-			requestData[++requestData.len] = list("Number" = SO.ordernum, "Name" = rrhtml_encode(SO.object.name), "OrderedBy" = SO.orderedby, "Comment" = rrhtml_encode(SO.comment))
+			requestData[++requestData.len] = list("Number" = SO.ordernum, "Name" = rhtml_encode(SO.object.name), "OrderedBy" = SO.orderedby, "Comment" = rhtml_encode(SO.comment))
 		if(!requestData.len)
 			requestData[++requestData.len] = list("Number" = null, "Name" = null, "orderedBy" = null, "Comment" = null)
 

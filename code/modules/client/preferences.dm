@@ -818,7 +818,7 @@ datum/preferences
 
 				if(medmsg != null)
 					medmsg = copytext(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
-					medmsg = rrhtml_encode(medmsg)
+					medmsg = rhtml_encode(medmsg)
 
 					med_record = medmsg
 					SetRecords(user)
@@ -828,7 +828,7 @@ datum/preferences
 
 				if(secmsg != null)
 					secmsg = copytext(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
-					secmsg = rrhtml_encode(secmsg)
+					secmsg = rhtml_encode(secmsg)
 
 					sec_record = secmsg
 					SetRecords(user)
@@ -837,7 +837,7 @@ datum/preferences
 
 				if(genmsg != null)
 					genmsg = copytext(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
-					genmsg = rrhtml_encode(genmsg)
+					genmsg = rhtml_encode(genmsg)
 
 					gen_record = genmsg
 					SetRecords(user)

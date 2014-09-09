@@ -79,7 +79,7 @@
 	if(non_whitespace)		return text		//only accepts the text if it has some non-spaces
 
 /proc/rhtml_encode(var/msg)
-	var/list/c = text2list(msg, "?")
+	var/list/c = text2list(msg, "ÿ")
 	if(c.len == 1)
 		c = text2list(msg, "&#255;")
 		if(c.len == 1)
@@ -94,7 +94,7 @@
 	return out
 
 /proc/rhtml_decode(var/msg)
-	var/list/c = text2list(msg, "?")
+	var/list/c = text2list(msg, "ÿ")
 	if(c.len == 1)
 		c = text2list(msg, "&#255;")
 		if(c.len == 1)

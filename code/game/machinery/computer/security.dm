@@ -504,7 +504,7 @@ What a mess.*/
 							active2.fields["ma_crim_d"] = t1
 					if("notes")
 						if (istype(active2, /datum/data/record))
-							var/t1 = copytext(rrhtml_encode(trim(input("Please summarize notes:", "Secure. records", rhtml_decode(active2.fields["notes"]), null)  as message)),1,MAX_MESSAGE_LEN)
+							var/t1 = copytext(rhtml_encode(trim(input("Please summarize notes:", "Secure. records", rhtml_decode(active2.fields["notes"]), null)  as message)),1,MAX_MESSAGE_LEN)
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active2 != a2))
 								return
 							active2.fields["notes"] = t1

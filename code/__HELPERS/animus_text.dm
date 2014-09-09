@@ -62,36 +62,6 @@ proc/sanitize_russian(var/msg) //Специально для всего, где не нужно убирать пере
 /proc/sanitize_uni(var/t,var/list/repl_chars = null)
 	return sanitize_simple_uni(t,repl_chars)
 
-/proc/rrhtml_encode(var/msg)
-	var/list/c = text2list(msg, "я")
-	if(c.len == 1)
-		c = text2list(msg, "&#255;")
-		if(c.len == 1)
-			return rhtml_encode(msg)
-	var/out = ""
-	var/first = 1
-	for(var/text in c)
-		if(!first)
-			out += "&#255;"
-		first = 0
-		out += rhtml_encode(text)
-	return out
-
-/proc/rrhtml_decode(var/msg)
-	var/list/c = text2list(msg, "я")
-	if(c.len == 1)
-		c = text2list(msg, "&#255;")
-		if(c.len == 1)
-			return rhtml_decode(msg)
-	var/out = ""
-	var/first = 1
-	for(var/text in c)
-		if(!first)
-			out += "&#255;"
-		first = 0
-		out += rhtml_decode(text)
-	return out
-
  /*
  * Text modification
  */
