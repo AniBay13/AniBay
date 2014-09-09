@@ -65,7 +65,7 @@
 	if(!msg)	return
 
 	var/recieve_color = "purple"
-	var/send_pm_type = " "
+	var/send_pm_type = ""
 	var/recieve_pm_type = "Player"
 
 	if(holder)
