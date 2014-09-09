@@ -61,8 +61,6 @@
 // Ported from unstable r355
 
 /turf/space/Entered(atom/movable/A as mob|obj)
-	world << A
-	world << A.throwing
 	if(movement_disabled)
 		usr << "\red Movement is admin-disabled." //This is to identify lag problems
 		return
