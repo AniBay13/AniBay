@@ -1468,6 +1468,7 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
+#include "maps\anibay1.6.dmm"
 #include "maps\overmap\examples.dm"
 #include "maps\overmap\_map.dmm"
 #include "maps\overmap\example_sector1.dmm"
