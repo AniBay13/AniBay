@@ -1475,5 +1475,6 @@
 #include "maps\overmap\example_sector2.dmm"
 #include "maps\overmap\bearcat\bearcat.dm"
 #include "maps\overmap\bearcat\bearcat.dmm"
-#include "maps\RandomZLevels\arcticwaste.dmm"
+#include "maps\RandomZLevels\Academy.dm"
+#include "maps\RandomZLevels\Academy.dmm"
 // END_INCLUDE
