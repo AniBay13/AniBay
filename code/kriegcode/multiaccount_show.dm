@@ -1,12 +1,14 @@
 /client/proc/checkAccount()
-	set name = "Check multiaccaunts"
+	set name = "Check multiaccounts"
 	set category = "Admin"
-	var/target = input(usr, "Напечатайте Ckey, который нужно проверить.", "Ckey") as text|null
-	showAccaunts(src, target)
+	var/target = input(usr, "Напечатайте ckey, который нужно проверить.", "Ckey") as text|null
+	if(!target) //Cancel теперь работает
+		return
+	showAccounts(src, target)
 
 
 
-/proc/showAccaunts(var/mob/user, var/targetkey)
+/proc/showAccounts(var/mob/user, var/targetkey)
 
 	var/output = "<center><table border='1'> <caption>Совпадение по computerID</caption><tr> <th width='100px' >ckey</th><th width='100px'>firstseen</th><th width='100px'>lastseen</th><th width='100px'>ip</th><th width='100px'>computerid </th></tr>"
 
