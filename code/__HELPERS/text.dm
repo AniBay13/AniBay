@@ -43,12 +43,17 @@
 			index = findtext(t, char)
 	return t
 
-/proc/sanitize_ya(var/t)
-	var/index = findtext(t, "я")
+proc/sanitize_russian(var/msg, var/html = 0) //Специально для всего, где не нужно убирать переносы строк и прочее.
+	var/rep
+	if(html)
+		rep = "&#x44F;"
+	else
+		rep = "&#255;"
+	var/index = findtext(msg, "я")
 	while(index)
-		t = copytext(t, 1, index) + "&#255;" + copytext(t, index+1)
-		index = findtext(t, "я")
-	return t
+		msg = copytext(msg, 1, index) + rep + copytext(msg, index + 1)
+		index = findtext(msg, "я")
+	return msg
 
 //Runs byond's sanitization proc along-side sanitize_simple
 /proc/sanitize(var/t,var/list/repl_chars = null)
@@ -78,32 +83,44 @@
 			else			non_whitespace = 1
 	if(non_whitespace)		return text		//only accepts the text if it has some non-spaces
 
-/proc/rhtml_encode(var/msg)
+/proc/rhtml_encode(var/msg, var/html = 0)
+	var/rep
+	if(html)
+		rep = "&#x44F;"
+	else
+		rep = "&#255;"
 	var/list/c = text2list(msg, "я")
 	if(c.len == 1)
-		c = text2list(msg, "&#255;")
+		c = text2list(msg, rep)
 		if(c.len == 1)
 			return html_encode(msg)
 	var/out = ""
 	var/first = 1
 	for(var/text in c)
 		if(!first)
-			out += "&#255;"
+			out += rep
 		first = 0
 		out += html_encode(text)
 	return out
 
-/proc/rhtml_decode(var/msg)
+/proc/rhtml_decode(var/msg, var/html = 0)
+	var/rep
+	if(html)
+		rep = "&#x44F;"
+	else
+		rep = "&#255;"
 	var/list/c = text2list(msg, "я")
 	if(c.len == 1)
 		c = text2list(msg, "&#255;")
 		if(c.len == 1)
-			return html_decode(msg)
+			c = text2list(msg, "&#x4FF")
+			if(c.len == 1)
+				return html_decode(msg)
 	var/out = ""
 	var/first = 1
 	for(var/text in c)
 		if(!first)
-			out += "&#255;"
+			out += rep
 		first = 0
 		out += html_decode(text)
 	return out

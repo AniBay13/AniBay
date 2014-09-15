@@ -52,13 +52,6 @@
 		index = findtext(t, "____255_")
 	return t
 
-proc/sanitize_russian(var/msg) //Специально для всего, где не нужно убирать переносы строк и прочее.
-	var/index = findtext(msg, "я")
-	while(index)
-		msg = copytext(msg, 1, index) + "&#255;" + copytext(msg, index + 1)
-		index = findtext(msg, "я")
-	return msg
-
 /proc/sanitize_uni(var/t,var/list/repl_chars = null)
 	return sanitize_simple_uni(t,repl_chars)
 
