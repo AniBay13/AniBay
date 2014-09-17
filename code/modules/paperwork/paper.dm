@@ -324,10 +324,9 @@
 				message_admins("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
 				return
 */
-		t = rhtml_encode(t)
+		t = rhtml_encode(t, 1)
 		t = replacetext(t, "\n", "<BR>")
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
-		t = sanitize_russian(t)
 		if(id!="end")
 			addtofield(text2num(id), t) // He wants to edit a field, let him.
 		else
