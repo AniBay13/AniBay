@@ -3,7 +3,7 @@
 	//Multikey checks and logging
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
-	log_access("Login: [key_name(src)] from [lastKnownIP ? lastKnownIP : "localhost"]-[computer_id] || BYOND v[client.byond_version]")
+	log_access("Login: [key_name(src)] from [lastKnownIP ? lastKnownIP : "localhost"]-[computer_id] || BYOND v500+")
 	if(config.log_access)
 		for(var/mob/M in player_list)
 			if(M == src)	continue
@@ -57,7 +57,7 @@
 			client.verbs |= H.species.abilities
 
 	nanomanager.send_resources(client)
-	
+
 	spawn(0)
 		if (istype(src, /mob/dead))
 			if (!src.client.holder && !config.antag_hud_allowed)
