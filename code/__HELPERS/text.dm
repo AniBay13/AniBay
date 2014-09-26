@@ -34,27 +34,6 @@
 			index = findtext(t, char)
 	return t
 
-//Removes a few problematic characters
-/proc/sanitize_simple(var/t,var/list/repl_chars = list("я"="&#255;", "\n"="#","\t"="#","пїЅ"="пїЅ"))
-	for(var/char in repl_chars)
-		var/index = findtext(t, char)
-		while(index)
-			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
-			index = findtext(t, char)
-	return t
-
-proc/sanitize_russian(var/msg, var/html = 0) //Специально для всего, где не нужно убирать переносы строк и прочее.
-	var/rep
-	if(html)
-		rep = "&#x44F;"
-	else
-		rep = "&#255;"
-	var/index = findtext(msg, "я")
-	while(index)
-		msg = copytext(msg, 1, index) + rep + copytext(msg, index + 1)
-		index = findtext(msg, "я")
-	return msg
-
 //Runs byond's sanitization proc along-side sanitize_simple
 /proc/sanitize(var/t,var/list/repl_chars = null)
 	return sanitize_simple(t,repl_chars)
@@ -77,7 +56,7 @@ proc/sanitize_russian(var/msg, var/html = 0) //Специально для всего, где не нужн
 	for(var/i=1, i<=length(text), i++)
 		switch(text2ascii(text,i))
 			if(62,60,92,47)	return			//rejects the text if it contains these bad characters: <, >, \ or /
-			//if(127 to 255)	return			//rejects weird letters like пїЅ
+			//if(127 to 255)	return			//rejects weird letters like
 			if(0 to 31)		return			//more weird stuff
 			if(32)			continue		//whitespace
 			else			non_whitespace = 1

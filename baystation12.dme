@@ -1525,5 +1525,5 @@
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\anibay1.6.dmm"
-#include "maps\RandomZLevels\spacebattle.dmm"
+#include "maps\RandomZLevels\arcticwaste.dmm"
 // END_INCLUDE

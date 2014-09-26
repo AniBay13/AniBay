@@ -39,21 +39,41 @@
  * Text sanitization
  */
 
-/proc/sanitize_simple_uni(var/t,var/list/repl_chars = list("\n"="#","\t"="#","пїЅ"="пїЅ","я"="____255_"))
+/proc/sanitize_simple(var/t,var/list/repl_chars = list("\n"="#","\t"="#","я"="&#255;","<"="(","&lt;"=")"))
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
 		while(index)
 			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
 			index = findtext(t, char)
-	t = rhtml_encode(t)
-	var/index = findtext(t, "____255_")
-	while(index)
-		t = copytext(t, 1, index) + "&#255;" + copytext(t, index+8)
-		index = findtext(t, "____255_")
 	return t
 
-/proc/sanitize_uni(var/t,var/list/repl_chars = null)
-	return sanitize_simple_uni(t,repl_chars)
+/proc/sanitize_simple_uni(var/t,var/list/repl_chars = list("\n"="#","\t"="#","я"="&#255;","<"="(","&lt;"=")"))
+	for(var/char in repl_chars)
+		var/index = findtext(t, char)
+		while(index)
+			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
+			index = findtext(t, char)
+	return t
+
+/proc/sanitize_uni(var/t,var/list/repl_chars = list("\n"="#","\t"="#","я"="&#255;","<"="(","&lt;"=")"))
+	for(var/char in repl_chars)
+		var/index = findtext(t, char)
+		while(index)
+			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
+			index = findtext(t, char)
+	return t
+
+proc/sanitize_russian(var/msg, var/html = 0) //Специально для всего, где не нужно убирать переносы строк и прочее.
+	var/rep
+	if(html)
+		rep = "&#x44F;"
+	else
+		rep = "&#255;"
+	var/index = findtext(msg, "я")
+	while(index)
+		msg = copytext(msg, 1, index) + rep + copytext(msg, index + 1)
+		index = findtext(msg, "я")
+	return msg
 
  /*
  * Text modification
