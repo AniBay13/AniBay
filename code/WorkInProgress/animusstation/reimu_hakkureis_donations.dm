@@ -178,14 +178,15 @@ var/list/datum/donator/donators = list()
 	var/category = "Debug"
 
 proc/load_donator(ckey)
-	establish_db_connection()
+	var/DBConnection/dbcon2 = new()
+	dbcon2.Connect("dbi:mysql:forum2:[sqladdress]:[sqlport]","[sqllogin]","[sqlpass]")
 
-	if(!dbcon.IsConnected())
-		world.log << "Failed to connect to database in load_donator([ckey])."
+	if(!dbcon2.IsConnected())
+		world.log << "Failed to connect to database [dbcon2.ErrorMsg()] in load_donator([ckey])."
 		diary << "Failed to connect to database in load_donator([ckey])."
 		return 0
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT sum FROM forum2.z_donators WHERE byond='[ckey]'")
+	var/DBQuery/query = dbcon2.NewQuery("SELECT sum FROM Z_donators WHERE byond='[ckey]'")
 	query.Execute()
 
 	if (query.item.len)
@@ -194,6 +195,8 @@ proc/load_donator(ckey)
 		return 1
 	else
 		return 0
+
+	dbcon2.Disconnect()
 
 proc/build_prizes_list()
 	var/list/strings = text2list ( stuff, "\n" )
