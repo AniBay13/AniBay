@@ -192,11 +192,12 @@ proc/load_donator(ckey)
 	if (query.item.len)
 		var/money = round(query.item[1])
 		new /datum/donator(ckey, money)
+		dbcon2.Disconnect()
 		return 1
 	else
+		dbcon2.Disconnect()
 		return 0
 
-	dbcon2.Disconnect()
 
 proc/build_prizes_list()
 	var/list/strings = text2list ( stuff, "\n" )
@@ -224,11 +225,9 @@ proc/build_prizes_list()
 		return
 
 	if (!donators[ckey]) //It doesn't exist yet
-		if (load_donator(ckey))
-			var/datum/donator/D = donators[ckey]
-			D.show()
-		else
-			usr << browse ("<b>You have not donated or the database is inaccessible.</b>", "window=donatorpanel")
+		load_donator(ckey)
+		var/datum/donator/D = donators[ckey]
+		D.show()
 	else
 		var/datum/donator/D = donators[ckey]
 		D.show()
