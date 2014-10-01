@@ -188,6 +188,8 @@ proc/load_donator(ckey)
 
 	var/DBQuery/query = dbcon2.NewQuery("SELECT sum FROM Z_donators WHERE byond='[ckey]'")
 	query.Execute()
+	world.log << "DURR [query.item.len]"
+	diary << "DURR [query.item.len]"
 
 	if (query.item.len)
 		var/money = round(query.item[1])
@@ -225,9 +227,11 @@ proc/build_prizes_list()
 		return
 
 	if (!donators[ckey]) //It doesn't exist yet
-		load_donator(ckey)
-		var/datum/donator/D = donators[ckey]
-		D.show()
+		if (load_donator(ckey))
+			var/datum/donator/D = donators[ckey]
+			D.show()
+		else
+			usr << browse ("<b>You have not donated or the database is inaccessible.</b>", "window=donatorpanel")
 	else
 		var/datum/donator/D = donators[ckey]
 		D.show()
