@@ -188,8 +188,14 @@ proc/load_donator(ckey)
 
 	var/DBQuery/query = dbcon2.NewQuery("SELECT sum FROM Z_donators WHERE byond='[ckey]'")
 	query.Execute()
-	world.log << "DURR [query.item.len] HURR [dbcon2.ErrorMsg()] HERP [query.item[1]] DERP [ckey]"
-	diary << "DURR [query.item.len] HURR [dbcon2.ErrorMsg()] HERP [query.item[1]] DERP [ckey]"
+	world.log << "DURR [query.item.len]"
+	diary << "DURR [query.item.len]"
+	world.log << "HURR [dbcon2.ErrorMsg()]"
+	diary << "HURR [dbcon2.ErrorMsg()]"
+	world.log << "HERP [query.item]"
+	diary << "HERP [query.item]"
+	world.log << "DERP [ckey]"
+	diary << "DERP [ckey]"
 
 	if (query.item.len)
 		var/money = round(query.item[1])
