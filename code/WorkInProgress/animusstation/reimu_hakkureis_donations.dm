@@ -188,24 +188,17 @@ proc/load_donator(ckey)
 
 	var/DBQuery/query = dbcon2.NewQuery("SELECT sum FROM Z_donators WHERE byond='[ckey]'")
 	query.Execute()
+	while(query.NextRow())
+	var/money = round(query.item[1])
+	new /datum/donator(ckey, money)
 	world.log << "DURR [query.item.len]"
 	diary << "DURR [query.item.len]"
 	world.log << "HURR [dbcon2.ErrorMsg()]"
 	diary << "HURR [dbcon2.ErrorMsg()]"
-	world.log << "HERP [query.item]"
-	diary << "HERP [query.item]"
 	world.log << "DERP [ckey]"
 	diary << "DERP [ckey]"
-
-	if (query.item.len)
-		var/money = round(query.item[1])
-		new /datum/donator(ckey, money)
-		dbcon2.Disconnect()
-		return 1
-	else
-		dbcon2.Disconnect()
-		return 0
-
+	dbcon2.Disconnect()
+	return 1
 
 proc/build_prizes_list()
 	var/list/strings = text2list ( stuff, "\n" )
