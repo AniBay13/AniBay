@@ -186,12 +186,15 @@ proc/load_donator(ckey)
 		diary << "Failed to connect to database in load_donator([ckey])."
 		return 0
 
-	var/DBQuery/query = dbcon2.NewQuery("SELECT sum FROM Z_donators WHERE byond='[ckey]'")
+	var/DBQuery/query = dbcon2.NewQuery("SELECT round(sum) FROM Z_donators WHERE byond='[ckey]'")
 	query.Execute()
 	world.log << "PURR [query.RowCount()]"
 	diary << "PURR [query.RowCount()]"
 	while(query.NextRow())
-		var/money = round(query.item[1])
+		var/list/RowData = query.GetRowData()
+		for(var/D in RowData)
+			usr << "[D] = [RowData[D]]"
+		var/money = round(text2num(query.item[1]))
 		new /datum/donator(ckey, money)
 		world.log << "DURR [query.item.len]"
 		diary << "DURR [query.item.len]"
