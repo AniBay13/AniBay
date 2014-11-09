@@ -65,7 +65,7 @@
 					<br><a href='?src=\ref[src];vir=f'>Flu</A>
 					<br><a href='?src=\ref[src];vir=jf'>Jungle Fever</a>
 					<br><a href='?src=\ref[src];vir=ca'>Clowning Around</a>
-					<br><a href='?src=\ref[src];vir=p'>Plasmatoid</a>
+					<br><a href='?src=\ref[src];vir=p'>Phorontoid</a>
 					<br><a href='?src=\ref[src];vir=dna'>Space Rhinovirus</a>
 					<br><a href='?src=\ref[src];vir=bot'>Robot Transformation</a>
 					<br><a href='?src=\ref[src];screen=1'>Back</a>"}
@@ -185,13 +185,13 @@
 <BR>
 <BR><b>Severity:</b> Laughable"}
 				if("p")
-					src.temp = {"<b>Name:</b> Plasmatoid
+					src.temp = {"<b>Name:</b> Phorontoid
 <BR><b>Number of stages:</b> 3
 <BR><b>Spread:</b> Airborne Transmission
 <BR><b>Possible Cure:</b> Inaprovaline
 <BR><b>Affected Species:</b> Human and Monkey
 <BR>
-<BR><b>Notes:</b> With this disease the victim will need plasma to breathe.
+<BR><b>Notes:</b> With this disease the victim will need phoron to breathe.
 <BR>
 <BR><b>Severity:</b> Major"}
 				if("dna")

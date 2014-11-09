@@ -61,9 +61,9 @@
 				newtoxins = 0
 				processing = 1
 				var/obj/item/weapon/ore/O
-				while(locate(/obj/item/weapon/ore/plasma, input.loc) && locate(/obj/machinery/portable_atmospherics/canister,output.loc))
-					O = locate(/obj/item/weapon/ore/plasma, input.loc)
-					if (istype(O,/obj/item/weapon/ore/plasma))
+				while(locate(/obj/item/weapon/ore/phoron, input.loc) && locate(/obj/machinery/portable_atmospherics/canister,output.loc))
+					O = locate(/obj/item/weapon/ore/phoron, input.loc)
+					if (istype(O,/obj/item/weapon/ore/phoron))
 						var/obj/machinery/portable_atmospherics/canister/C
 						C = locate(/obj/machinery/portable_atmospherics/canister,output.loc)
 						C.air_contents.toxins += 100

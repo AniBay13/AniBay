@@ -23,7 +23,7 @@
 
 /mob/living/carbon/human
 	var/oxygen_alert = 0
-	var/plasma_alert = 0
+	var/phoron_alert = 0
 	var/co2_alert = 0
 	var/fire_alert = 0
 	var/pressure_alert = 0
@@ -363,13 +363,13 @@
 						var/datum/gas_mixture/filtered = new
 
 						filtered.copy_from(breath)
-						filtered.plasma *= G.gas_filter_strength
+						filtered.phoron *= G.gas_filter_strength
 						for(var/datum/gas/gas in filtered.trace_gases)
 							gas.moles *= G.gas_filter_strength
 						filtered.update_values()
 						loc.assume_air(filtered)
 
-						breath.plasma *= 1 - G.gas_filter_strength
+						breath.phoron *= 1 - G.gas_filter_strength
 						for(var/datum/gas/gas in breath.trace_gases)
 							gas.moles *= 1 - G.gas_filter_strength
 						breath.update_values()
@@ -476,8 +476,8 @@
 		switch(species.breath_type)
 			if("nitrogen")
 				inhaling = breath.nitrogen
-			if("plasma")
-				inhaling = breath.plasma
+			if("phoron")
+				inhaling = breath.phoron
 			if("carbon_dioxide")
 				inhaling = breath.carbon_dioxide
 			else
@@ -491,7 +491,7 @@
 			if("carbon_dioxide")
 				poison = breath.carbon_dioxide
 			else
-				poison = breath.plasma
+				poison = breath.phoron
 
 		switch(species.exhale_type)
 			if("carbon_dioxide")
@@ -500,8 +500,8 @@
 				exhaling = breath.oxygen
 			if("nitrogen")
 				exhaling = breath.nitrogen
-			if("plasma")
-				exhaling = breath.plasma
+			if("phoron")
+				exhaling = breath.phoron
 			else
 				no_exhale = 1
 
@@ -537,8 +537,8 @@
 		switch(species.breath_type)
 			if("nitrogen")
 				breath.nitrogen -= inhaled_gas_used
-			if("plasma")
-				breath.plasma -= inhaled_gas_used
+			if("phoron")
+				breath.phoron -= inhaled_gas_used
 			if("carbon_dioxide")
 				breath.carbon_dioxide-= inhaled_gas_used
 			else
@@ -550,8 +550,8 @@
 					breath.oxygen += inhaled_gas_used
 				if("nitrogen")
 					breath.nitrogen += inhaled_gas_used
-				if("plasma")
-					breath.plasma += inhaled_gas_used
+				if("phoron")
+					breath.phoron += inhaled_gas_used
 				if("carbon_dioxide")
 					breath.carbon_dioxide += inhaled_gas_used
 
@@ -592,9 +592,9 @@
 			var/ratio = (poison/safe_toxins_max) * 10
 			if(reagents)
 				reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
-			plasma_alert = max(plasma_alert, 1)
+			phoron_alert = max(phoron_alert, 1)
 		else
-			plasma_alert = 0
+			phoron_alert = 0
 
 		// If there's some other shit in the air lets deal with it here.
 		if(breath.trace_gases.len)
@@ -691,7 +691,7 @@
 			else
 				loc_temp = environment.temperature
 
-			if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1 && environment.plasma < MOLES_plasma_VISIBLE)
+			if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1 && environment.phoron < MOLES_phoron_VISIBLE)
 				pressure_alert = 0
 				return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
@@ -767,7 +767,7 @@
 			else
 				pressure_alert = -1
 
-		if(environment.plasma > MOLES_plasma_VISIBLE)
+		if(environment.phoron > MOLES_phoron_VISIBLE)
 			pl_effects()
 		return
 
@@ -1002,11 +1002,11 @@
 				alien = species.reagent_tag
 			reagents.metabolize(src,alien)
 
-			var/total_plasmaloss = 0
+			var/total_phoronloss = 0
 			for(var/obj/item/I in src)
 				if(I.contaminated)
-					total_plasmaloss += vsc.plc.CONTAMINATION_LOSS
-			if(!(status_flags & GODMODE)) adjustToxLoss(total_plasmaloss)
+					total_phoronloss += vsc.plc.CONTAMINATION_LOSS
+			if(!(status_flags & GODMODE)) adjustToxLoss(total_phoronloss)
 
 		if(status_flags & GODMODE)	return 0	//godmode
 
@@ -1456,7 +1456,7 @@
 //				if(resting || lying || sleeping)		rest.icon_state = "rest1"
 //				else									rest.icon_state = "rest0"
 			if(toxin)
-				if(hal_screwyhud == 4 || plasma_alert)	toxin.icon_state = "tox1"
+				if(hal_screwyhud == 4 || phoron_alert)	toxin.icon_state = "tox1"
 				else									toxin.icon_state = "tox0"
 			if(oxygen)
 				if(hal_screwyhud == 3 || oxygen_alert)	oxygen.icon_state = "oxy1"

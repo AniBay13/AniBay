@@ -609,11 +609,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	access = access_robotics
 	group = "Engineering"
 
-/datum/supply_packs/plasma
-	name = "plasma assembly crate"
-	contains = list(/obj/item/weapon/tank/plasma,
-					/obj/item/weapon/tank/plasma,
-					/obj/item/weapon/tank/plasma,
+/datum/supply_packs/phoron
+	name = "phoron assembly crate"
+	contains = list(/obj/item/weapon/tank/phoron,
+					/obj/item/weapon/tank/phoron,
+					/obj/item/weapon/tank/phoron,
 					/obj/item/device/assembly/igniter,
 					/obj/item/device/assembly/igniter,
 					/obj/item/device/assembly/igniter,
@@ -624,8 +624,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/device/assembly/timer,
 					/obj/item/device/assembly/timer)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure/plasma
-	containername = "plasma assembly crate"
+	containertype = /obj/structure/closet/crate/secure/phoron
+	containername = "phoron assembly crate"
 	access = access_tox_storage
 	group = "Medical / Science"
 
@@ -1042,7 +1042,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Supermatter Core"
 	contains = list(/obj/machinery/power/supermatter)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure/plasma
+	containertype = /obj/structure/closet/crate/secure/phoron
 	containername = "Supermatter crate (CAUTION)"
 	group = "Engineering"
 	access = access_ce
@@ -1052,7 +1052,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Supermatter Shard"
 	contains = list(/obj/machinery/power/supermatter/shard)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure/plasma
+	containertype = /obj/structure/closet/crate/secure/phoron
 	containername = "Supermatter shard crate (CAUTION)"
 	access = access_ce
 	group = "Engineering" */
@@ -1237,14 +1237,14 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Engineering"
 	contains = list(/obj/machinery/portable_atmospherics/canister/nitrogen)
 
-/datum/supply_packs/canister_plasma
-	name = "plasma gas canister"
+/datum/supply_packs/canister_phoron
+	name = "phoron gas canister"
 	cost = 60
-	containername = "plasma gas canister crate"
+	containername = "phoron gas canister crate"
 	containertype = /obj/structure/closet/crate/secure/large
 	access = access_atmospherics
 	group = "Engineering"
-	contains = list(/obj/machinery/portable_atmospherics/canister/plasma)
+	contains = list(/obj/machinery/portable_atmospherics/canister/phoron)
 
 /datum/supply_packs/canister_sleeping_agent
 	name = "N2O gas canister"

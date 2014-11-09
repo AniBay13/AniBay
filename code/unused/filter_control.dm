@@ -57,7 +57,7 @@
 	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon/ai))
 		return 0
 
-	var/list/gases = list("O2", "N2", "Plasma", "CO2", "N2O")
+	var/list/gases = list("O2", "N2", "Phoron", "CO2", "N2O")
 	var/dat
 	user.machine = src
 

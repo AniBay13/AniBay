@@ -166,28 +166,28 @@
 
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(power && istype(power,/obj/item/powerarmor/power/plasma))
+		if(power && istype(power,/obj/item/powerarmor/power/phoron))
 			switch(W.type)
-				if(/obj/item/stack/sheet/mineral/plasma)
+				if(/obj/item/stack/sheet/mineral/phoron)
 					if(fuel < 50)
-						user << "\blue You feed some refined plasma into the armor's generator."
+						user << "\blue You feed some refined phoron into the armor's generator."
 						power:fuel += 25
 						W:amount--
 						if (W:amount <= 0)
 							del(W)
 						return
 					else
-						user << "\red The generator already has plenty of plasma."
+						user << "\red The generator already has plenty of phoron."
 						return
 
-				if(/obj/item/weapon/ore/plasma) //raw plasma has impurities, so it doesn't provide as much fuel. --NEO
+				if(/obj/item/weapon/ore/phoron) //raw phoron has impurities, so it doesn't provide as much fuel. --NEO
 					if(fuel < 50)
-						user << "\blue You feed some plasma into the armor's generator."
+						user << "\blue You feed some phoron into the armor's generator."
 						power:fuel += 15
 						del(W)
 						return
 					else
-						user << "\red The generator already has plenty of plasma."
+						user << "\red The generator already has plenty of phoron."
 						return
 
 		..()

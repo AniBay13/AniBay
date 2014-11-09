@@ -144,7 +144,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/t = ""
 	t+= "Nitrogen : [env.nitrogen]\n"
 	t+= "Oxygen : [env.oxygen]\n"
-	t+= "plasma : [env.plasma]\n"
+	t+= "phoron : [env.phoron]\n"
 	t+= "CO2: [env.carbon_dioxide]\n"
 
 	usr.show_message(t, 1)
@@ -955,11 +955,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	for(var/obj/machinery/power/rad_collector/Rad in world)
 		if(Rad.anchored)
 			if(!Rad.P)
-				var/obj/item/weapon/tank/plasma/plasma = new/obj/item/weapon/tank/plasma(Rad)
-				plasma.air_contents.plasma = 70
+				var/obj/item/weapon/tank/phoron/phoron = new/obj/item/weapon/tank/phoron(Rad)
+				phoron.air_contents.phoron = 70
 				Rad.drainratio = 0
-				Rad.P = plasma
-				plasma.loc = Rad
+				Rad.P = phoron
+				phoron.loc = Rad
 
 			if(!Rad.active)
 				Rad.toggle_power()
@@ -997,12 +997,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				Rad.anchored = 1
 				Rad.connect_to_network()
 
-				var/obj/item/weapon/tank/plasma/plasma = new/obj/item/weapon/tank/plasma(Rad)
+				var/obj/item/weapon/tank/phoron/phoron = new/obj/item/weapon/tank/phoron(Rad)
 
-				plasma.air_contents.plasma = 29.1154	//This is a full tank if you filled it from a canister
-				Rad.P = plasma
+				phoron.air_contents.phoron = 29.1154	//This is a full tank if you filled it from a canister
+				Rad.P = phoron
 
-				plasma.loc = Rad
+				phoron.loc = Rad
 
 				if(!Rad.active)
 					Rad.toggle_power()

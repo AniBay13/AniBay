@@ -25,7 +25,7 @@
 
 /obj/item/weapon/cell/crap
 	name = "\improper Nanotrasen brand rechargable AA battery"
-	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
+	desc = "You can't top the phoron top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = "powerstorage=0"
 	maxcharge = 500
 	matter = list("glass" = 40)
@@ -101,7 +101,7 @@
 
 /obj/item/weapon/cell/slime
 	name = "charged slime core"
-	desc = "A yellow slime core infused with plasma, it crackles with power."
+	desc = "A yellow slime core infused with phoron, it crackles with power."
 	origin_tech = "powerstorage=2;biotech=4"
 	icon = 'icons/mob/slimes.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "yellow slime extract" //"potato_battery"

@@ -107,20 +107,20 @@
 					T.ChangeTurf(/turf/simulated/wall)
 				else
 					T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
-				if(mineral != "plasma")//Stupid shit keeps me from pushing the attackby() to plasma walls -Sieve
+				if(mineral != "phoron")//Stupid shit keeps me from pushing the attackby() to phoron walls -Sieve
 					T = get_turf(src)
 					T.attackby(W,user)
 				del(src)
 	else
 		user << "\blue You can't reach, close it first!"
 
-	if( istype(W, /obj/item/weapon/pickaxe/plasmacutter) )
+	if( istype(W, /obj/item/weapon/pickaxe/phoroncutter) )
 		var/turf/T = get_turf(src)
 		if(!mineral)
 			T.ChangeTurf(/turf/simulated/wall)
 		else
 			T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
-		if(mineral != "plasma")
+		if(mineral != "phoron")
 			T = get_turf(src)
 			T.attackby(W,user)
 		del(src)
@@ -142,7 +142,7 @@
 			T.ChangeTurf(/turf/simulated/wall)
 		else
 			T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
-		if(mineral != "plasma")
+		if(mineral != "phoron")
 			T = get_turf(src)
 			T.attackby(W,user)
 		del(src)
@@ -243,7 +243,7 @@
 			T.attackby(W,user)
 			del(src)
 
-	else if( istype(W, /obj/item/weapon/pickaxe/plasmacutter) )
+	else if( istype(W, /obj/item/weapon/pickaxe/phoroncutter) )
 		var/turf/T = get_turf(src)
 		T.ChangeTurf(/turf/simulated/wall)
 		T = get_turf(src)
@@ -320,11 +320,11 @@
 	icon_state = ""
 	mineral = "diamond"
 
-/obj/structure/falsewall/plasma
-	name = "plasma wall"
-	desc = "A wall with plasma plating. This is definately a bad idea."
+/obj/structure/falsewall/phoron
+	name = "phoron wall"
+	desc = "A wall with phoron plating. This is definately a bad idea."
 	icon_state = ""
-	mineral = "plasma"
+	mineral = "phoron"
 
 /obj/structure/falsewall/sandstone
 	name = "sandstone wall"

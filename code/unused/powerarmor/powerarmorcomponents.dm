@@ -20,9 +20,9 @@
 	proc/checkpower()
 		return 1
 
-	plasma
-		name = "Miniaturized plasma generator"
-		desc = "Runs on plasma."
+	phoron
+		name = "Miniaturized phoron generator"
+		desc = "Runs on phoron."
 		slowdown = 1
 		var/fuel = 0
 

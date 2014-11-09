@@ -25,7 +25,7 @@
 	t+= "\red Temperature: [environment.temperature] \n"
 	t+= "\blue Nitrogen: [environment.nitrogen] \n"
 	t+= "\blue Oxygen: [environment.oxygen] \n"
-	t+= "\blue plasma : [environment.plasma] \n"
+	t+= "\blue phoron : [environment.phoron] \n"
 	t+= "\blue Carbon Dioxide: [environment.carbon_dioxide] \n"
 	for(var/datum/gas/trace_gas in environment.trace_gases)
 		usr << "\blue [trace_gas.type]: [trace_gas.moles] \n"
@@ -999,7 +999,7 @@ mob/proc/yank_out_object()
 			var/datum/wound/internal_bleeding/I = new (15)
 			affected.wounds += I
 			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 1)
-		
+
 		if (ishuman(U))
 			var/mob/living/carbon/human/human_user = U
 			human_user.bloody_hands(H)

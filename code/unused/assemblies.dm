@@ -19,12 +19,12 @@
 	flags = FPRINT | TABLEPASS| CONDUCT
 
 /obj/item/assembly/m_i_ptank
-	desc = "A very intricate igniter and proximity sensor electrical assembly mounted onto top of a plasma tank."
-	name = "Proximity/Igniter/Plasma Tank Assembly"
+	desc = "A very intricate igniter and proximity sensor electrical assembly mounted onto top of a phoron tank."
+	name = "Proximity/Igniter/Phoron Tank Assembly"
 	icon_state = "prox-igniter-tank0"
 	var/obj/item/device/prox_sensor/part1 = null
 	var/obj/item/device/igniter/part2 = null
-	var/obj/item/weapon/tank/plasma/part3 = null
+	var/obj/item/weapon/tank/phoron/part3 = null
 	status = 0.0
 	flags = FPRINT | TABLEPASS| CONDUCT
 
@@ -38,12 +38,12 @@
 	flags = FPRINT | TABLEPASS| CONDUCT
 
 /obj/item/assembly/r_i_ptank
-	desc = "A very intricate igniter and signaller electrical assembly mounted onto top of a plasma tank."
-	name = "Radio/Igniter/Plasma Tank Assembly"
+	desc = "A very intricate igniter and signaller electrical assembly mounted onto top of a phoron tank."
+	name = "Radio/Igniter/Phoron Tank Assembly"
 	icon_state = "radio-igniter-tank"
 	var/obj/item/device/radio/signaler/part1 = null
 	var/obj/item/device/igniter/part2 = null
-	var/obj/item/weapon/tank/plasma/part3 = null
+	var/obj/item/weapon/tank/phoron/part3 = null
 	status = 0.0
 	flags = FPRINT | TABLEPASS| CONDUCT
 
@@ -67,12 +67,12 @@
 	flags = FPRINT | TABLEPASS| CONDUCT
 
 /obj/item/assembly/t_i_ptank
-	desc = "A very intricate igniter and timer assembly mounted onto top of a plasma tank."
-	name = "Timer/Igniter/Plasma Tank Assembly"
+	desc = "A very intricate igniter and timer assembly mounted onto top of a phoron tank."
+	name = "Timer/Igniter/Phoron Tank Assembly"
 	icon_state = "timer-igniter-tank0"
 	var/obj/item/device/timer/part1 = null
 	var/obj/item/device/igniter/part2 = null
-	var/obj/item/weapon/tank/plasma/part3 = null
+	var/obj/item/weapon/tank/phoron/part3 = null
 	status = 0.0
 	flags = FPRINT | TABLEPASS| CONDUCT
 
@@ -703,7 +703,7 @@
 		src.status = 1
 		bombers += "[key_name(user)] welded a prox bomb. Temp: [src.part3.air_contents.temperature-T0C]"
 		message_admins("[key_name_admin(user)] welded a prox bomb. Temp: [src.part3.air_contents.temperature-T0C]")
-		user.show_message("\blue A pressure hole has been bored to the plasma tank valve. The plasma tank can now be ignited.", 1)
+		user.show_message("\blue A pressure hole has been bored to the phoron tank valve. The phoron tank can now be ignited.", 1)
 	else
 		src.status = 0
 		bombers += "[key_name(user)] unwelded a prox bomb. Temp: [src.part3.air_contents.temperature-T0C]"
@@ -737,7 +737,7 @@
 
 /obj/item/assembly/m_i_ptank/emp_act(severity)
 
-	if(istype(part3,/obj/item/weapon/tank/plasma) && prob(100/severity))
+	if(istype(part3,/obj/item/weapon/tank/phoron) && prob(100/severity))
 		part3.ignite()
 	..()
 
@@ -792,7 +792,7 @@
 		src.status = 1
 		bombers += "[key_name(user)] welded a time bomb. Temp: [src.part3.air_contents.temperature-T0C]"
 		message_admins("[key_name_admin(user)] welded a time bomb. Temp: [src.part3.air_contents.temperature-T0C]")
-		user.show_message("\blue A pressure hole has been bored to the plasma tank valve. The plasma tank can now be ignited.", 1)
+		user.show_message("\blue A pressure hole has been bored to the phoron tank valve. The phoron tank can now be ignited.", 1)
 	else
 		if(src)
 			src.status = 0
@@ -823,7 +823,7 @@
 	return
 
 /obj/item/assembly/t_i_ptank/emp_act(severity)
-	if(istype(part3,/obj/item/weapon/tank/plasma) && prob(100/severity))
+	if(istype(part3,/obj/item/weapon/tank/phoron) && prob(100/severity))
 		part3.ignite()
 	..()
 
@@ -871,7 +871,7 @@
 		src.status = 1
 		bombers += "[key_name(user)] welded a radio bomb. Temp: [src.part3.air_contents.temperature-T0C]"
 		message_admins("[key_name_admin(user)] welded a radio bomb. Temp: [src.part3.air_contents.temperature-T0C]")
-		user.show_message("\blue A pressure hole has been bored to the plasma tank valve. The plasma tank can now be ignited.", 1)
+		user.show_message("\blue A pressure hole has been bored to the phoron tank valve. The phoron tank can now be ignited.", 1)
 	else
 		src.status = 0
 		bombers += "[key_name(user)] unwelded a radio bomb. Temp: [src.part3.air_contents.temperature-T0C]"
@@ -882,7 +882,7 @@
 	return
 
 /obj/item/assembly/r_i_ptank/emp_act(severity)
-	if(istype(part3,/obj/item/weapon/tank/plasma) && prob(100/severity))
+	if(istype(part3,/obj/item/weapon/tank/phoron) && prob(100/severity))
 		part3.ignite()
 	..()
 
@@ -919,7 +919,7 @@
 		src.status = 1
 		bombers += "[key_name(user)] welded a suicide bomb. Temp: [src.part4.air_contents.temperature-T0C]"
 		message_admins("[key_name_admin(user)] welded a suicide bomb. Temp: [src.part4.air_contents.temperature-T0C]")
-		user.show_message("\blue A pressure hole has been bored to the plasma tank valve. The plasma tank can now be ignited.", 1)
+		user.show_message("\blue A pressure hole has been bored to the phoron tank valve. The phoron tank can now be ignited.", 1)
 	else
 		src.status = 0
 		bombers += "[key_name(user)] unwelded a suicide bomb. Temp: [src.part4.air_contents.temperature-T0C]"

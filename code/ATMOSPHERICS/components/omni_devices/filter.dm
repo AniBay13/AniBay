@@ -87,8 +87,8 @@
 					filtered_out.carbon_dioxide = removed.carbon_dioxide
 					removed.carbon_dioxide = 0
 				if(ATM_P)
-					filtered_out.plasma = removed.plasma
-					removed.plasma = 0
+					filtered_out.phoron = removed.phoron
+					removed.phoron = 0
 				if(ATM_N2O)
 					if(removed.trace_gases.len>0)
 						for(var/datum/gas/sleeping_agent/trace_gas in removed.trace_gases)
@@ -174,7 +174,7 @@
 		if(ATM_CO2)
 			return "Carbon Dioxide"
 		if(ATM_P)
-			return "plasma" //*cough* Plasma *cough*
+			return "phoron" //*cough* Phoron *cough*
 		if(ATM_N2O)
 			return "Nitrous Oxide"
 		else
@@ -202,7 +202,7 @@
 			if("switch_mode")
 				switch_mode(dir_flag(href_list["dir"]), mode_return_switch(href_list["mode"]))
 			if("switch_filter")
-				var/new_filter = input(usr,"Select filter mode:","Change filter",href_list["mode"]) in list("None", "Oxygen", "Nitrogen", "Carbon Dioxide", "plasma", "Nitrous Oxide")
+				var/new_filter = input(usr,"Select filter mode:","Change filter",href_list["mode"]) in list("None", "Oxygen", "Nitrogen", "Carbon Dioxide", "phoron", "Nitrous Oxide")
 				switch_filter(dir_flag(href_list["dir"]), mode_return_switch(new_filter))
 
 	update_icon()
@@ -217,7 +217,7 @@
 			return ATM_N2
 		if("Carbon Dioxide")
 			return ATM_CO2
-		if("plasma")
+		if("phoron")
 			return ATM_P
 		if("Nitrous Oxide")
 			return ATM_N2O

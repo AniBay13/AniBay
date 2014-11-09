@@ -586,7 +586,7 @@ proc/print(msg as text)
 	var/equip_cooldown = 10
 	var/energy_drain = 250
 	construction_time = 1200
-	construction_cost = list("metal"=30000,"plasma"=25000,"silver"=20000,"gold"=20000)
+	construction_cost = list("metal"=30000,"phoron"=25000,"silver"=20000,"gold"=20000)
 	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
 	var/obj/machinery/bot/curiosity/chassis
 	var/disabled = 0 //malf

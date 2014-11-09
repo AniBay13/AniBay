@@ -96,7 +96,7 @@
 	if (src.f_mask & GAS_N2)
 		ndelta.n2 = min(src.f_per, src.ngas.n2)
 	if (src.f_mask & GAS_PL)
-		ndelta.plasma = min(src.f_per, src.ngas.plasma)
+		ndelta.phoron = min(src.f_per, src.ngas.phoron)
 	if (src.f_mask & GAS_CO2)
 		ndelta.co2 = min(src.f_per, src.ngas.co2)
 	if (src.f_mask & GAS_N2O)
@@ -164,7 +164,7 @@
 		user.machine = null
 		return
 
-	var/list/gases = list("O2", "N2", "Plasma", "CO2", "N2O")
+	var/list/gases = list("O2", "N2", "Phoron", "CO2", "N2O")
 	user.machine = src
 	var/dat = "Filter Release Rate:<BR>\n<A href='?src=\ref[src];fp=-[num2text(src.maxrate, 9)]'>M</A> <A href='?src=\ref[src];fp=-100000'>-</A> <A href='?src=\ref[src];fp=-10000'>-</A> <A href='?src=\ref[src];fp=-1000'>-</A> <A href='?src=\ref[src];fp=-100'>-</A> <A href='?src=\ref[src];fp=-1'>-</A> [src.f_per] <A href='?src=\ref[src];fp=1'>+</A> <A href='?src=\ref[src];fp=100'>+</A> <A href='?src=\ref[src];fp=1000'>+</A> <A href='?src=\ref[src];fp=10000'>+</A> <A href='?src=\ref[src];fp=100000'>+</A> <A href='?src=\ref[src];fp=[num2text(src.maxrate, 9)]'>M</A><BR>\n"
 	for (var/i = 1; i <= gases.len; i++)
@@ -174,13 +174,13 @@
 		var/pressure = round(totalgas / gas.maximum * 100)
 		var/nitrogen = gas.n2 / totalgas * 100
 		var/oxygen = gas.oxygen / totalgas * 100
-		var/plasma = gas.plasma / totalgas * 100
+		var/phoron = gas.phoron / totalgas * 100
 		var/co2 = gas.co2 / totalgas * 100
 		var/no2 = gas.sl_gas / totalgas * 100
 
-		dat += "<BR>Gas Levels: <BR>\nPressure: [pressure]%<BR>\nNitrogen: [nitrogen]%<BR>\nOxygen: [oxygen]%<BR>\nPlasma: [plasma]%<BR>\nCO2: [co2]%<BR>\nN2O: [no2]%<BR>\n"
+		dat += "<BR>Gas Levels: <BR>\nPressure: [pressure]%<BR>\nNitrogen: [nitrogen]%<BR>\nOxygen: [oxygen]%<BR>\nPhoron: [phoron]%<BR>\nCO2: [co2]%<BR>\nN2O: [no2]%<BR>\n"
 	else
-		dat += "<BR>Gas Levels: <BR>\nPressure: 0%<BR>\nNitrogen: 0%<BR>\nOxygen: 0%<BR>\nPlasma: 0%<BR>\nCO2: 0%<BR>\nN2O: 0%<BR>\n"
+		dat += "<BR>Gas Levels: <BR>\nPressure: 0%<BR>\nNitrogen: 0%<BR>\nOxygen: 0%<BR>\nPhoron: 0%<BR>\nCO2: 0%<BR>\nN2O: 0%<BR>\n"
 	dat += "<BR>\n<A href='?src=\ref[src];close=1'>Close</A><BR>\n"
 
 	user << browse(dat, "window=pipefilter;size=300x365")*/ //TODO: FIX

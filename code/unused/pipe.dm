@@ -77,7 +77,7 @@ var/linenums = 0
 
 	//if(suffix=="dbgp")
 	//	world.log << "PLP"
-	//	Plasma()
+	//	Phoron()
 
 //	var/dbg = (suffix == "d") && Debug
 
@@ -421,17 +421,17 @@ var/linenums = 0
 		else
 	return
 /*
-	var/strength = (((plasma + oxygen/2.0) / 1600000.0) * sqrt(temp) ) / 10
-	message_admins("CODER: Pipe explosion strength: [strength], Temperature: [temp], Plasma: [plasma], Oxygen: [oxygen]")
+	var/strength = (((phoron + oxygen/2.0) / 1600000.0) * sqrt(temp) ) / 10
+	message_admins("CODER: Pipe explosion strength: [strength], Temperature: [temp], Phoron: [phoron], Oxygen: [oxygen]")
 	//lets say hypothetically it uses up 9/10 of its energy in bursting the pipe
 
 	if (strength < 773.0)
 		var/turf/T = get_turf(src.loc)
-		T.poison += plasma
+		T.poison += phoron
 		T.firelevel = T.poison
 		T.res_vars()
 
-		//if ((src.gas.temperature > (450+T0C) && src.gas.plasma == 1600000.0))
+		//if ((src.gas.temperature > (450+T0C) && src.gas.phoron == 1600000.0))
 
 		if (strength > (450+T0C))
 			var/turf/sw = locate(max(T.x - 4, 1), max(T.y - 4, 1), T.z)
@@ -454,7 +454,7 @@ var/linenums = 0
 			makepowernets()
 
 		else
-			//if ((src.gas.temperature > (300+T0C) && src.gas.plasma == 1600000.0))
+			//if ((src.gas.temperature > (300+T0C) && src.gas.phoron == 1600000.0))
 			if (strength > (300+T0C))
 				var/turf/sw = locate(max(T.x - 4, 1), max(T.y - 4, 1), T.z)
 				var/turf/ne = locate(min(T.x + 4, world.maxx), min(T.y + 4, world.maxy), T.z)
@@ -490,7 +490,7 @@ var/linenums = 0
 	var/m_range = round(strength / 387)
 	for(var/obj/machinery/atmoalter/canister/C in range(2, T))
 		if (!( C.destroyed ))
-			if (C.gas.plasma >= 35000)
+			if (C.gas.phoron >= 35000)
 				C.destroyed = 1
 				m_range++
 
@@ -936,7 +936,7 @@ var/linenums = 0
 /obj/machinery/connector/process()
 	//if(suffix=="dbgp")
 	//	world.log << "CP"
-	//	Plasma()
+	//	Phoron()
 
 	var/delta_gt
 //	var/dbg = (suffix == "d") && Debug
@@ -981,7 +981,7 @@ var/linenums = 0
 
 	//if(suffix=="dbgp")
 	//	world.log << "CP"
-	//	Plasma()
+	//	Phoron()
 */ //TODO: FIX
 
 
@@ -1140,7 +1140,7 @@ var/linenums = 0
 
 	//if(suffix=="dbgp")
 	//	world.log << "VP"
-	//	Plasma()
+	//	Phoron()
 
 	var/delta_gt
 
@@ -1219,7 +1219,7 @@ var/linenums = 0
 	/*
 	//if(suffix=="dbgp")
 	//	world.log << "VP"
-	//	Plasma()
+	//	Phoron()
 
 	var/delta_gt
 
@@ -1744,7 +1744,7 @@ var/linenums = 0
 		var/obj/substance/gas/exterior = new()
 		exterior.oxygen = T.oxygen
 		exterior.n2 = T.n2
-		exterior.plasma = T.poison
+		exterior.phoron = T.poison
 		exterior.co2 = T.co2
 		exterior.sl_gas = T.sl_gas
 		exterior.temperature = T.temp
@@ -1757,7 +1757,7 @@ var/linenums = 0
 		flowing.set_frac(exterior,flow_rate)
 		if(!(src.f_mask & GAS_O2))	flowing.oxygen	= 0
 		if(!(src.f_mask & GAS_N2))	flowing.n2		= 0
-		if(!(src.f_mask & GAS_PL))	flowing.plasma	= 0
+		if(!(src.f_mask & GAS_PL))	flowing.phoron	= 0
 		if(!(src.f_mask & GAS_CO2))	flowing.co2		= 0
 		if(!(src.f_mask & GAS_N2O))	flowing.sl_gas	= 0
 		use_power(5,ENVIRON)

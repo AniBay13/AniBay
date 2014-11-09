@@ -13,7 +13,7 @@
 		/obj/item/weapon/cable_coil = 40)
 
 	New()
-		modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
+		modules += new /obj/item/weapon/pickaxe/phoroncutter(src)
 		modules += new /obj/item/borg/sight/thermal(src)
 		modules += new /obj/item/borg/sight/meson(src)
 		modules += new /obj/item/weapon/handcuffs/cyborg(src)
